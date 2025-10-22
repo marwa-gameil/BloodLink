@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Azure.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Models
 {
-    public class Hospitals
+    public class Hospital
     {
         public int HospitalId { get; set; }
         public string Name { get; set; }
@@ -21,6 +22,11 @@ namespace App.Domain.Models
         public TimeOnly EndWorkingHours { get; set; }
        
         public DateTime CreatedAt { get; set; }
+
+        public int CreatedById { get; set; } //fk to user
         public User CreatedBy { get; set; }
+
+        public ICollection<BloodRequest> BloodRequests { get; set; } = new List<BloodRequest>();
+
     }
 }

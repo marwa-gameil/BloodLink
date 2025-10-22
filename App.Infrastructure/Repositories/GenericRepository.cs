@@ -31,7 +31,7 @@ public class GenericRepository<TModel> : IRepository<TModel> where TModel : Base
     public async Task<TResult?> GetOne<TResult>(Specification<TModel, TResult> specification) =>
         await SpecificationQueryBuilder.Build(_dbSet, specification).FirstOrDefaultAsync();
 
-    public async virtual Task<TModel?> GetById(Guid id) =>
+    public async virtual Task<TModel?> GetById(int id) =>
         await _dbSet.FindAsync(id);
 
     public async virtual Task<TModel> Add(TModel model) =>

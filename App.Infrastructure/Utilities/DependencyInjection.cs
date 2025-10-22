@@ -13,6 +13,8 @@ public static class DependencyInjection
     /// <returns>A reference to this instance after injecting repositories</returns>
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<IRequestRepository, RequestRepository>();
+        services.AddScoped<IStockRepository, StockRepository>();
         services.AddScoped<IRepositoryManager, RepositoryManager>();
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         return services;

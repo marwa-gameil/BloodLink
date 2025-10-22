@@ -4,7 +4,7 @@ using App.Domain.Abstractions;
 
 namespace App.Domain.Models;
 
-public class User : IdentityUser<Guid>
+public class User 
 {
     public int Id  { get; set; }
     public string Username { get; set; }

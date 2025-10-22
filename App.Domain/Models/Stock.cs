@@ -20,7 +20,9 @@ namespace App.Domain.Models
     public class Stock
     {
         public int Id { get; set; }
-        public BloodBank BloodBankId { get; set; }
+
+        public int BloodBankId { get; set; }     
+        public BloodBank BloodBank { get; set; }
         public decimal Quantity { get; set; }
         public BloodType BloodType { get; set; }
         public DateTime CreatedAt { get; set; }

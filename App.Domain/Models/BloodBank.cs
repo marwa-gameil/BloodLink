@@ -23,5 +23,8 @@ namespace App.Domain.Models
         public string LicenseNumber { get; set; }
         public DateTime CreatedAt { get; set; }
         public User CreatedBy { get; set; }
+
+        public ICollection<BloodRequest> Requests { get; set; } = new List<BloodRequest>();
+
     }
 }

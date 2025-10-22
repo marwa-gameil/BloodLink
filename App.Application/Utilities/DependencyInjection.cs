@@ -1,6 +1,8 @@
+using App.Application.Interfaces;
+using App.Application.Services;
+using App.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-
 namespace App.Application.Utilities;
 
 public static class DependencyInjection
@@ -12,6 +14,9 @@ public static class DependencyInjection
     /// <returns>A reference to this instance after injecting services</returns>
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+     
+        services.AddScoped<IRequestService, RequestService>();
+
         return services;
     }
 }
