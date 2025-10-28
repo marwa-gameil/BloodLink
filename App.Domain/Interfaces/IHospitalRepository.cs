@@ -12,7 +12,9 @@ namespace App.Infrastructure.Repositories
         Task<Hospital> GetByIdAsync(int id);
         Task<IEnumerable<Hospital>> GetAllAsync();
         Task AddAsync(Hospital hospital);
-        Task UpdateAsync(Hospital hospital);
-        Task DeleteAsync(Hospital hospital);
+        void UpdateAsync(Hospital hospital);
+        void DeleteAsync(Hospital hospital);
+        Task SaveAsync();
+
     }
 }

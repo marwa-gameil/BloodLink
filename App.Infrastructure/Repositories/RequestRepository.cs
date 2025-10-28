@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace App.Infrastructure.Repositories
 {
-    internal class RequestRepository : IRequestRepository
+    public class RequestRepository : IRequestRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<BloodRequest> _dbSet;
@@ -22,13 +22,11 @@ namespace App.Infrastructure.Repositories
         public async Task AddAsync(BloodRequest request)
         {
             await _dbSet.AddAsync(request);
-            await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(BloodRequest request)
+        public void DeleteAsync(BloodRequest request)
         {
             _dbSet.Remove(request);
-            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<BloodRequest>> GetAllAsync(int BankId)
@@ -67,9 +65,13 @@ namespace App.Infrastructure.Repositories
                 .FirstOrDefaultAsync(r => r.Id == id);
         }
         
-        public async Task UpdateAsync(BloodRequest request)
+        public void UpdateAsync(BloodRequest request)
         {
             _dbSet.Update(request);
+        }
+
+        public async Task SaveAsync()
+        {
             await _context.SaveChangesAsync();
         }
     }

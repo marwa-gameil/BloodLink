@@ -9,11 +9,12 @@ namespace App.Infrastructure.Repositories
 {
     public interface IBloodBankRepository
     {
-        Task<BloodBank> GetByIdAsync(int id);
-        Task<IEnumerable<BloodBank>> GetAllAsync();
+        Task<BloodBank?> GetByIdAsync(int id);
+        Task<IEnumerable<BloodBank>> GetAllAsync(string Governorate);
         Task AddAsync(BloodBank bloodBank);
-        Task UpdateAsync(BloodBank bloodBank);
-        Task DeleteAsync(BloodBank bloodBank);
+        void UpdateAsync(BloodBank bloodBank);
+        void DeleteAsync(BloodBank bloodBank);
+        Task SaveAsync();
 
     }
 }

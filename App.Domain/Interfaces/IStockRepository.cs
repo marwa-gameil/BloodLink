@@ -6,9 +6,11 @@ namespace App.Domain.Interfaces
     public interface IStockRepository 
     {
         Task<IEnumerable<Stock>> GetAllAsync(int BloodBankId);
-        Task<Stock> GetByIdAsync(int id);
+        Task<Stock> GetOneAsync(int BankId, BloodType bloodType);
         Task AddAsync(Stock stock);
-        Task UpdateAsync(Stock stock);
-        Task DeleteAsync(Stock stock);
+        void UpdateAsync(Stock stock);
+        void DeleteAsync(Stock stock);
+
+        Task SaveAsync();
     }
 }

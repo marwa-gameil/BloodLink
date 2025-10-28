@@ -16,6 +16,7 @@ public static class DependencyInjection
         services.AddScoped<IRequestRepository, RequestRepository>();
         services.AddScoped<IStockRepository, StockRepository>();
         services.AddScoped<IRepositoryManager, RepositoryManager>();
+        services.AddScoped<IBloodBankRepository, BloodBankRepository>();
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         return services;
     }

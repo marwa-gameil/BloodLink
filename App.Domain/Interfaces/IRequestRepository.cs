@@ -13,7 +13,9 @@ namespace App.Infrastructure.Repositories
         Task<BloodRequest> GetByIdAsync(int id);
         Task<IEnumerable<BloodRequest>> GetAllAsync(int BankId);
         Task AddAsync(BloodRequest request);
-        Task UpdateAsync(BloodRequest request);
-        Task DeleteAsync(BloodRequest request);
+        void UpdateAsync(BloodRequest request);
+        void DeleteAsync(BloodRequest request);
+        Task SaveAsync();
+
     }
 }

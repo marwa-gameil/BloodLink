@@ -46,6 +46,7 @@ namespace App.Application.Services
             };
             // 3. save to database
             await _requestRepository.AddAsync(newRequest);
+            await _requestRepository.SaveAsync();
             return Result.Success(201);
         }
 
@@ -55,7 +56,8 @@ namespace App.Application.Services
             if (request == null)
                 return Result.Fail<RequestDto>(new Response(404, "Request not found"));
 
-            await _requestRepository.DeleteAsync(request);
+             _requestRepository.DeleteAsync(request);
+            await _requestRepository.SaveAsync();
             return Result.Success(204);
 
         }
@@ -109,7 +111,8 @@ namespace App.Application.Services
             existing.Status =status;
             existing.EndAt = requestDto.EndAt;
 
-            await _requestRepository.UpdateAsync(existing);
+             _requestRepository.UpdateAsync(existing);
+            await _requestRepository.SaveAsync();
             return Result.Success(new Response(200, "Request updated successfully"));
         }
     }

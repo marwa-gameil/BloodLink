@@ -20,45 +20,30 @@ namespace App.Infrastructure.Repositories
         {
             return await _dbSet
                 .Where(s => s.BloodBankId == BloodBankId)
-                .Select(s => new Stock
-                {
-                    Id = s.Id,
-                    BloodBankId = s.BloodBankId,
-                    Quantity = s.Quantity,
-                    BloodType = s.BloodType,
-                    CreatedAt = s.CreatedAt,
-                    UpdatedAt = s.UpdatedAt,
-                    BloodBank = new BloodBank
-                    {
-                        Id = s.BloodBank.Id,
-                        Name = s.BloodBank.Name,
-                        Address = s.BloodBank.Address
-
-                    }
-                })
                 .ToListAsync();
 
         }
-        public async Task<Stock?> GetByIdAsync(int id)
+        public async Task<Stock?> GetOneAsync(int BloodBankId,BloodType bloodType)
         {
-            return await _dbSet.FirstOrDefaultAsync(r => r.Id == id);
+            return await _dbSet.FirstOrDefaultAsync(r => r.BloodBankId == BloodBankId && r.BloodType == bloodType );
         }
         public async Task AddAsync(Stock stock)
         {
             await _dbSet.AddAsync(stock);
-            await _applicationDbContext.SaveChangesAsync();
         }
 
 
-        public async Task UpdateAsync(Stock stock)
+        public  void UpdateAsync(Stock stock)
         {
            _dbSet.Update(stock);
-              await _applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Stock stock)
+        public  void DeleteAsync(Stock stock)
         {
             _dbSet.Remove(stock);
+        }
+        public async Task SaveAsync()
+        {
             await _applicationDbContext.SaveChangesAsync();
         }
     }

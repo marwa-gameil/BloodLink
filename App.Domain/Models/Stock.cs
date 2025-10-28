@@ -21,7 +21,7 @@ namespace App.Domain.Models
     {
         public int Id { get; set; }
 
-        public int BloodBankId { get; set; }     
+        public int BloodBankId { get; set; }      //fk
         public BloodBank BloodBank { get; set; }
         public decimal Quantity { get; set; }
         public BloodType BloodType { get; set; }
