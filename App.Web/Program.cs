@@ -1,4 +1,7 @@
 using App.Web.Data;
+using App.Infrastructure.Data;
+using App.Application.Utilities;
+using App.Infrastructure.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,13 +15,23 @@ namespace App.Web
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            
+            // Register ApplicationDbContext for Identity
+            builder.Services.AddDbContext<App.Web.Data.ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            // Register Infrastructure ApplicationDbContext for business logic
+            builder.Services.AddDbContext<App.Infrastructure.Data.ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<App.Web.Data.ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            // Register Application Services and Repositories
+            builder.Services.AddServices();
+            builder.Services.AddRepositories();
 
             var app = builder.Build();
 

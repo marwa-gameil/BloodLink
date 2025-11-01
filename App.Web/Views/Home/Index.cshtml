@@ -1,8 +1,90 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="bg-gradient-to-b from-red-50 to-white">
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <div class="mb-8">
+                <div class="inline-block bg-red-600 p-6 rounded-full shadow-xl">
+                    <svg class="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
+                Welcome to <span class="text-red-600">BloodLink</span>
+            </h1>
+            <p class="text-2xl text-gray-600 mb-4 max-w-2xl mx-auto">
+                Connecting lives through blood donation
+            </p>
+            <p class="text-lg text-gray-500 mb-12 max-w-xl mx-auto">
+                Your contribution can save a life. Join us in making a difference today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/Requests" class="bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1">
+                    View Requests
+                </a>
+                <a href="/Requests/Create" class="bg-white text-red-600 border-2 border-red-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-50 transition-colors shadow-lg hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1">
+                    Make a Request
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Find Donors</h3>
+                <p class="text-gray-600">Connect with registered blood donors in your area quickly and efficiently.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Track Inventory</h3>
+                <p class="text-gray-600">Real-time blood stock monitoring across all blood banks and hospitals.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Save Lives</h3>
+                <p class="text-gray-600">Every donation matters. Be part of a lifesaving network in your community.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="bg-red-600 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="text-5xl font-bold mb-2">500+</div>
+                    <div class="text-xl text-red-100">Active Donors</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold mb-2">1000+</div>
+                    <div class="text-xl text-red-100">Lives Saved</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold mb-2">50+</div>
+                    <div class="text-xl text-red-100">Partner Hospitals</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

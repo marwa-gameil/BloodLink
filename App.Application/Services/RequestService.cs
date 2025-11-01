@@ -1,9 +1,9 @@
 ﻿using App.Application.DTOs;
 using App.Application.Interfaces;
 using App.Application.Utilities;
+using App.Domain.Interfaces;
 using App.Domain.Models;
 using App.Domain.Responses;
-using App.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
