@@ -1,9 +1,9 @@
 ﻿using App.Application.DTOs;
 using App.Application.Interfaces;
 using App.Application.Utilities;
+using App.Domain.Interfaces;
 using App.Domain.Models;
 using App.Domain.Responses;
-using App.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace App.Application.Services
 {
-    internal class RequestService : IRequestService
+    public class RequestService : IRequestService
     {
         private readonly IRequestRepository _requestRepository;
         private readonly IBloodBankRepository _bloodBankRepository;
@@ -71,7 +71,7 @@ namespace App.Application.Services
                 BloodType = r.BloodType,
                 Quantity = r.Quantity,
                 HospitalId = r.HospitalId,
-                HospitalName = r.Hospital.Name,
+                HospitalName = r.Hospital.User.Name,
                 PatientName = r.PatientName,
                 PatientPhoneNumber = r.PatientPhoneNumber,
                 NationalId = r.NationalId,

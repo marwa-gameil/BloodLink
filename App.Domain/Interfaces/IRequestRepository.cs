@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Infrastructure.Repositories
+namespace App.Domain.Interfaces
 {
     public interface IRequestRepository 
     {

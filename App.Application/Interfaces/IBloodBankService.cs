@@ -13,7 +13,7 @@ namespace App.Application.Interfaces
         Task<Result<IEnumerable<BloodBankDto>>> GetAllBloodBanksAsync(string Governorate);
         //Task<Result<BloodBankDto>> GetBloodBankByIdAsync(int id);
         Task<Result> AddBloodBankAsync(CreateBloodBankDto CreateBloodBankDto);
-        Task<Result> UpdateBloodBankAsync(int id, UpdateBloodBankDto UpdateBloodBankDto);
+       // Task<Result> UpdateBloodBankAsync(int id, UpdateBloodBankDto UpdateBloodBankDto);
         Task<Result> DeleteBloodBankAsync(int id);
     }
 }

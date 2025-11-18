@@ -1,4 +1,5 @@
-﻿using App.Domain.Models;
+﻿using App.Domain.Interfaces;
+using App.Domain.Models;
 using App.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -34,6 +35,7 @@ namespace App.Infrastructure.Repositories
 
             // return all requests with related hospital and blood bank data
             return await _dbSet
+                
                 .Where(r=>r.BloodBankId == BankId)
                 .Select(r=> new BloodRequest
                 {
@@ -48,8 +50,14 @@ namespace App.Infrastructure.Repositories
                     Hospital = new Hospital
                     {
                         HospitalId = r.Hospital.HospitalId,
-                        Name = r.Hospital.Name,
-                        Address = r.Hospital.Address
+                        User = new User
+                        {
+                            Name = r.Hospital.User.Name,
+                            Address = r.Hospital.User.Address,
+                            PhoneNumber = r.Hospital.User.PhoneNumber,
+                            Email = r.Hospital.User.Email,
+                            Governorate = r.Hospital.User.Governorate
+                        }
                     },
                    
                 })

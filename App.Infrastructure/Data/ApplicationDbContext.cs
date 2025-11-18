@@ -5,7 +5,7 @@ using App.Domain.Models;
 
 namespace App.Infrastructure.Data;
 
-public sealed class ApplicationDbContext: DbContext
+public sealed class ApplicationDbContext: IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : base(options){}

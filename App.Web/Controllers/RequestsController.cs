@@ -1,7 +1,8 @@
 ﻿using App.Application.DTOs;
 using App.Application.Interfaces;
+using App.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-
+using App.Infrastructure.Utilities;
 namespace App.Web.Controllers
 {
     public class RequestsController : Controller
@@ -11,7 +12,6 @@ namespace App.Web.Controllers
         {
             _requestService = requestService;
         }
-
         public async Task<IActionResult> Index()
         {
             // For demonstration, assuming BankId is 1

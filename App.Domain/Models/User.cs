@@ -4,12 +4,15 @@ using App.Domain.Abstractions;
 
 namespace App.Domain.Models;
 
-public class User 
+public class User  : IdentityUser<Guid>
 {
-    public int Id  { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
-    public string Email { get; set; }
-
     public DateTime CreatedAt { get; set; }
+    public Guid? CreatedById { get; set; }
+    public User? CreatedBy { get; set; }
+    public string Name { get; set; }
+    public string Address { get; set; }
+    public string? Governorate { get; set; }
+    public Hospital? Hospital { get; set; } 
+    public BloodBank? BloodBank { get; set; } 
+
 }

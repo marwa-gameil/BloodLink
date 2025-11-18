@@ -43,7 +43,10 @@ namespace App.Application.DTOs
         [Required]
 
         public string LicenseNumber { get; set; }
-        
+
+        [Required]
+        public required string Password { get; set; }
+
     }
     public class UpdateBloodBankDto
     {

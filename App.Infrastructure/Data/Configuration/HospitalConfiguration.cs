@@ -2,17 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-
 namespace App.Infrastructure.Data.Configuration
 {
-    public class BloodBankConfiguration : IEntityTypeConfiguration<BloodBank>
+    public class HospitalConfiguration : IEntityTypeConfiguration<Hospital>
     {
-        public void Configure(EntityTypeBuilder<BloodBank> builder)
+        public void Configure(EntityTypeBuilder<Hospital> builder)
         {
             builder
                 .HasOne(bb => bb.User)
-                .WithOne(u => u.BloodBank)
-                .HasForeignKey<BloodBank>(bb => bb.UserId);
+                .WithOne(u => u.Hospital)
+                .HasForeignKey<Hospital>(bb => bb.UserId);
         }
     }
 }

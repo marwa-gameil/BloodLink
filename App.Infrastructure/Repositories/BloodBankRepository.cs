@@ -1,4 +1,5 @@
-﻿using App.Domain.Models;
+﻿using App.Domain.Interfaces;
+using App.Domain.Models;
 using App.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,7 +17,8 @@ namespace App.Infrastructure.Repositories
         }
         public async Task<IEnumerable<BloodBank>> GetAllAsync(string Governorate)
         {
-            return await _dbSet.Where(g => g.Governorate == Governorate).ToListAsync();
+            return await _dbSet.Include(g => g.User)
+                .Where(g => g.User.Governorate == Governorate).ToListAsync();
 
         }
         public async Task<BloodBank?> GetByIdAsync(int id)

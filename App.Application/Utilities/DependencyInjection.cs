@@ -1,6 +1,6 @@
 using App.Application.Interfaces;
 using App.Application.Services;
-using App.Infrastructure.Repositories;
+using FoodRescue.Application.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 namespace App.Application.Utilities;
@@ -16,7 +16,8 @@ public static class DependencyInjection
     {
      
         services.AddScoped<IRequestService, RequestService>();
-
+        services.AddScoped<IBloodBankService, BloodBankService>();
+        services.AddScoped<ICurrentLoggedInUser,CurrentLoggedInUser >();
         return services;
     }
 }
