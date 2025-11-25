@@ -82,5 +82,11 @@ namespace App.Infrastructure.Repositories
         {
             await _context.SaveChangesAsync();
         }
+
+        public IEnumerable<BloodRequest> GetRequestsByHospitalAsync(Guid hospitalId)
+        {
+           return  _dbSet.Where(r => r.HospitalId == hospitalId);
+
+        }
     }
 }

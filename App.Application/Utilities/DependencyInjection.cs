@@ -15,7 +15,6 @@ public static class DependencyInjection
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
      
-        services.AddScoped<IRequestService, RequestService>();
         services.AddScoped<IBloodBankService, BloodBankService>();
         services.AddScoped<ICurrentLoggedInUser,CurrentLoggedInUser >();
         return services;

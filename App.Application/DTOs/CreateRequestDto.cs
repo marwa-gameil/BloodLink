@@ -8,7 +8,7 @@ namespace App.Application.DTOs
 {
     public class CreateRequestDto
     {
-        public Guid BloodBankId { get; set; }
+        public Guid BLoodBankID { get; set; }
         public decimal Quantity { get; set; }
         public string BloodType { get; set; }
         public string PatientName { get; set; }

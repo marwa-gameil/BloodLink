@@ -8,7 +8,7 @@ namespace App.Application.Interfaces
     public interface ICookieAuthService
     {
 
-        Task<Result<UserDTO>> LoginAsync(LoginDTO loginDTO);
+        Task<Result> LoginAsync(LoginDTO loginDTO);
         Task<Result> LogoutAsync();
     }
 }

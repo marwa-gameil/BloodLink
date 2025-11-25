@@ -15,6 +15,8 @@ namespace App.Domain.Interfaces
         Task AddAsync(BloodRequest request);
         void UpdateAsync(BloodRequest request);
         void DeleteAsync(BloodRequest request);
+        IEnumerable<BloodRequest> GetRequestsByHospitalAsync(Guid hospitalId);
+
         Task SaveAsync();
 
     }

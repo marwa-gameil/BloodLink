@@ -155,8 +155,6 @@ namespace App.Application.Services
                 Id = r.Id,
                 BloodType = r.BloodType.ToString(),
                 Quantity = r.Quantity,
-                HospitalId = r.HospitalId,
-                HospitalName = r.Hospital.User.Name,
                 PatientName = r.PatientName,
                 PatientPhoneNumber = r.PatientPhoneNumber,
                 NationalId = r.NationalId,
