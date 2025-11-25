@@ -9,7 +9,7 @@ namespace App.Application.DTOs
     public record RequestDto
     {
         public int Id { get; set; }
-        public int HospitalId { get; set; }
+        public Guid HospitalId { get; set; }
         public string HospitalName { get; set; }
         public decimal Quantity { get; set; }
         public string BloodType { get; set; }

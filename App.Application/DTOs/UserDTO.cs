@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace App.Application.DTOs
 {
-    public record UserDTO 
+    public class UserDTO 
     {
         public Guid Id { get; set; }
         public required string Name { get; set; }

@@ -1,6 +1,8 @@
-using Microsoft.Extensions.DependencyInjection;
 using App.Domain.Interfaces;
+using App.Domain.Models;
 using App.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace App.Infrastructure.Utilities;
 
@@ -17,6 +19,8 @@ public static class DependencyInjection
         services.AddScoped<IStockRepository, StockRepository>();
         services.AddScoped<IRepositoryManager, RepositoryManager>();
         services.AddScoped<IBloodBankRepository, BloodBankRepository>();
+        services.AddScoped<UserManager<User>, UserManager<User>>();
+
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         return services;
     }

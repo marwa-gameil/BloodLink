@@ -14,5 +14,6 @@ public class User  : IdentityUser<Guid>
     public string? Governorate { get; set; }
     public Hospital? Hospital { get; set; } 
     public BloodBank? BloodBank { get; set; } 
+    public bool IsActive { get; set; } = true;
 
 }

@@ -25,18 +25,22 @@ namespace App.Application.Services
             _bloodBankRepository = bloodBankRepository;
         }
 
-        public async Task<Result> CreateRequest(CreateRequestDto requestDto,int HospitalId)
+        public async Task<Result> CreateRequest(CreateRequestDto requestDto,Guid HospitalId)
         {
             var bloodBank = await _bloodBankRepository.GetByIdAsync(requestDto.BloodBankId);
             if(bloodBank == null)
             {
                 return Result.Fail<RequestDto>(new Response(404, "Blood Bank not found"));
             }
+            bool result = Enum.TryParse<BloodType>(requestDto.BloodType.ToString(), out var bloodType);
+            if (!result)
+                return Result.Fail<RequestDto>(new Response(400, "Invalid blood type value"));
+
             var newRequest = new BloodRequest
             {
                 BloodBankId = requestDto.BloodBankId,
                 Quantity = requestDto.Quantity,
-                BloodType = requestDto.BloodType,
+                BloodType = bloodType,
                 EndAt = requestDto.EndAt,
                 PatientName = requestDto.PatientName,
                 PatientPhoneNumber = requestDto.PatientPhoneNumber,
@@ -44,7 +48,6 @@ namespace App.Application.Services
                 CreatedAt = DateTime.UtcNow,
                 Status = BloodRequestStatus.Pending
             };
-            // 3. save to database
             await _requestRepository.AddAsync(newRequest);
             await _requestRepository.SaveAsync();
             return Result.Success(201);
@@ -56,30 +59,14 @@ namespace App.Application.Services
             if (request == null)
                 return Result.Fail<RequestDto>(new Response(404, "Request not found"));
 
+
              _requestRepository.DeleteAsync(request);
             await _requestRepository.SaveAsync();
             return Result.Success(204);
 
         }
 
-        public async Task<Result<IEnumerable<RequestDto>>> GetAllRequests(int BankId)
-        {
-            var requests = await _requestRepository.GetAllAsync(BankId);
-            return Result.Success(requests.ConvertAll(r=> new RequestDto
-            {
-                Id = r.Id,
-                BloodType = r.BloodType,
-                Quantity = r.Quantity,
-                HospitalId = r.HospitalId,
-                HospitalName = r.Hospital.User.Name,
-                PatientName = r.PatientName,
-                PatientPhoneNumber = r.PatientPhoneNumber,
-                NationalId = r.NationalId,
-                CreatedAt = r.CreatedAt
-               
-            }
-            ));
-        }
+     
 
         /*
         public async Task<Result> GetRequestById(int id)
@@ -91,6 +78,8 @@ namespace App.Application.Services
             return Result.Success(request);
         }
         */
+
+        /*
         public async Task<Result> UpdateRequest(int id, UpdateRequestDto requestDto)
         {
             var existing = await _requestRepository.GetByIdAsync(id);
@@ -115,5 +104,8 @@ namespace App.Application.Services
             await _requestRepository.SaveAsync();
             return Result.Success(new Response(200, "Request updated successfully"));
         }
+
+       */
+
     }
 }

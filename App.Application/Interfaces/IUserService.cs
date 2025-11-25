@@ -12,7 +12,7 @@ namespace App.Application.Interfaces
     public interface IUserService
     {
         Task<Result<IEnumerable<UserDTO>>> GetAll();
-        Task<Result<UserDTO>> GetByIdAsync(Guid id);
-        Task<Result> DeleteAsync(Guid id);
+        Task<Result<UserDTO>> GetByEmailAsync(string email);
+        Task<Result> DeactivateAsync(Guid id);
     }
 }

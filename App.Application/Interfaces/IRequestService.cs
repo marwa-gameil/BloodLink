@@ -13,9 +13,8 @@ namespace App.Application.Interfaces
     public interface IRequestService
     {
         //Task<Result> GetRequestById(int id);
-        Task<Result<IEnumerable<RequestDto>>>GetAllRequests(int BankId);
-        Task<Result> CreateRequest(CreateRequestDto requestDto,int HospitalId);
-        Task<Result> UpdateRequest(int id, UpdateRequestDto requestDto);
+        Task<Result> CreateRequest(CreateRequestDto requestDto,Guid HospitalId);
+       // Task<Result> UpdateRequest(int id, UpdateRequestDto requestDto);
         Task<Result> CancelRequest(int id);  // we should not delete requests, just cancel them 
                                              // a bool in the model Canceled = false;
 

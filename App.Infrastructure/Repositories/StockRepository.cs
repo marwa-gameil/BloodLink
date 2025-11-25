@@ -16,14 +16,14 @@ namespace App.Infrastructure.Repositories
             _applicationDbContext = applicationDbContext;
             _dbSet = _applicationDbContext.Set<Stock>();
         }
-        public async Task<IEnumerable<Stock>> GetAllAsync(int BloodBankId)
+        public async Task<IEnumerable<Stock>> GetAllAsync(Guid BloodBankId)
         {
             return await _dbSet
                 .Where(s => s.BloodBankId == BloodBankId)
                 .ToListAsync();
 
         }
-        public async Task<Stock?> GetOneAsync(int BloodBankId,BloodType bloodType)
+        public async Task<Stock?> GetOneAsync(Guid BloodBankId,BloodType bloodType)
         {
             return await _dbSet.FirstOrDefaultAsync(r => r.BloodBankId == BloodBankId && r.BloodType == bloodType );
         }

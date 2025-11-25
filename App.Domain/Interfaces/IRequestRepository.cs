@@ -10,8 +10,8 @@ namespace App.Domain.Interfaces
 {
     public interface IRequestRepository 
     {
-        Task<BloodRequest> GetByIdAsync(int id);
-        Task<IEnumerable<BloodRequest>> GetAllAsync(int BankId);
+        Task<BloodRequest?> GetByIdAsync(int id);
+        Task<IEnumerable<BloodRequest>> GetAllAsync(Guid BankId);
         Task AddAsync(BloodRequest request);
         void UpdateAsync(BloodRequest request);
         void DeleteAsync(BloodRequest request);

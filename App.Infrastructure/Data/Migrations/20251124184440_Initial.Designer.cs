@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251118210234_initialMigrations")]
-    partial class initialMigrations
+    [Migration("20251124184440_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,8 @@ namespace App.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("App.Domain.Models.BloodBank", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<TimeOnly>("EndWorkingHours")
                         .HasColumnType("time");
@@ -49,13 +46,7 @@ namespace App.Infrastructure.Data.Migrations
                     b.Property<TimeOnly>("StartWorkingHours")
                         .HasColumnType("time");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasKey("UserId");
 
                     b.ToTable("BloodBank");
                 });
@@ -68,8 +59,8 @@ namespace App.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BloodBankId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("BloodBankId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BloodType")
                         .IsRequired()
@@ -81,8 +72,8 @@ namespace App.Infrastructure.Data.Migrations
                     b.Property<DateTime>("EndAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("HospitalId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("HospitalId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NationalId")
                         .IsRequired()
@@ -113,11 +104,8 @@ namespace App.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("App.Domain.Models.Hospital", b =>
                 {
-                    b.Property<int>("HospitalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HospitalId"));
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<TimeOnly>("EndWorkingHours")
                         .HasColumnType("time");
@@ -135,13 +123,7 @@ namespace App.Infrastructure.Data.Migrations
                     b.Property<TimeOnly>("StartWorkingHours")
                         .HasColumnType("time");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("HospitalId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasKey("UserId");
 
                     b.ToTable("Hospital");
                 });
@@ -154,8 +136,8 @@ namespace App.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BloodBankId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("BloodBankId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BloodType")
                         .HasColumnType("int");

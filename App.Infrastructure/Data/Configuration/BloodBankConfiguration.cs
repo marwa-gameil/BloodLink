@@ -9,6 +9,9 @@ namespace App.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<BloodBank> builder)
         {
+            builder.HasKey(x => x.UserId);
+
+
             builder
                 .HasOne(bb => bb.User)
                 .WithOne(u => u.BloodBank)

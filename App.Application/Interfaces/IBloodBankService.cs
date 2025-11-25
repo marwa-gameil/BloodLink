@@ -1,4 +1,5 @@
 ﻿using App.Application.DTOs;
+using App.Domain.Models;
 using App.Domain.Responses;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace App.Application.Interfaces
         //Task<Result<BloodBankDto>> GetBloodBankByIdAsync(int id);
         Task<Result> AddBloodBankAsync(CreateBloodBankDto CreateBloodBankDto);
        // Task<Result> UpdateBloodBankAsync(int id, UpdateBloodBankDto UpdateBloodBankDto);
-        Task<Result> DeleteBloodBankAsync(int id);
+        //Task<Result> DeleteBloodBankAsync(Guid id);
+        Task<Result> UpdateRqeuestStatusAsync(int requestId,BloodRequestStatus bloodRequestStatus);
+        Task<Result<IEnumerable<RequestDto>>> GetAllRequests();
+        Task<Result> StockIncreament(StockIncreamentDto stockIncreamentDto);
+
     }
 }

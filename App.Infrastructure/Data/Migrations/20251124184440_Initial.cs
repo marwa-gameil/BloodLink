@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigrations : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -170,18 +170,16 @@ namespace App.Infrastructure.Data.Migrations
                 name: "BloodBank",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Latitude = table.Column<float>(type: "real", nullable: false),
                     Longitude = table.Column<float>(type: "real", nullable: false),
                     LicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartWorkingHours = table.Column<TimeOnly>(type: "time", nullable: false),
-                    EndWorkingHours = table.Column<TimeOnly>(type: "time", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    EndWorkingHours = table.Column<TimeOnly>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BloodBank", x => x.Id);
+                    table.PrimaryKey("PK_BloodBank", x => x.UserId);
                     table.ForeignKey(
                         name: "FK_BloodBank_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -194,18 +192,16 @@ namespace App.Infrastructure.Data.Migrations
                 name: "Hospital",
                 columns: table => new
                 {
-                    HospitalId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Latitude = table.Column<float>(type: "real", nullable: false),
                     Longitude = table.Column<float>(type: "real", nullable: false),
                     StartWorkingHours = table.Column<TimeOnly>(type: "time", nullable: false),
                     EndWorkingHours = table.Column<TimeOnly>(type: "time", nullable: false),
-                    LicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    LicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hospital", x => x.HospitalId);
+                    table.PrimaryKey("PK_Hospital", x => x.UserId);
                     table.ForeignKey(
                         name: "FK_Hospital_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -220,7 +216,7 @@ namespace App.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BloodBankId = table.Column<int>(type: "int", nullable: false),
+                    BloodBankId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     BloodType = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -233,7 +229,7 @@ namespace App.Infrastructure.Data.Migrations
                         name: "FK_Stock_BloodBank_BloodBankId",
                         column: x => x.BloodBankId,
                         principalTable: "BloodBank",
-                        principalColumn: "Id",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -243,8 +239,8 @@ namespace App.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HospitalId = table.Column<int>(type: "int", nullable: false),
-                    BloodBankId = table.Column<int>(type: "int", nullable: false),
+                    HospitalId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BloodBankId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     BloodType = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -261,13 +257,13 @@ namespace App.Infrastructure.Data.Migrations
                         name: "FK_BloodRequest_BloodBank_BloodBankId",
                         column: x => x.BloodBankId,
                         principalTable: "BloodBank",
-                        principalColumn: "Id",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BloodRequest_Hospital_HospitalId",
                         column: x => x.HospitalId,
                         principalTable: "Hospital",
-                        principalColumn: "HospitalId",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -316,12 +312,6 @@ namespace App.Infrastructure.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BloodBank_UserId",
-                table: "BloodBank",
-                column: "UserId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BloodRequest_BloodBankId",
                 table: "BloodRequest",
                 column: "BloodBankId");
@@ -330,12 +320,6 @@ namespace App.Infrastructure.Data.Migrations
                 name: "IX_BloodRequest_HospitalId",
                 table: "BloodRequest",
                 column: "HospitalId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Hospital_UserId",
-                table: "Hospital",
-                column: "UserId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stock_BloodBankId",

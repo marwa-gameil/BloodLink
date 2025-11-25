@@ -15,18 +15,18 @@ public static class WebAppExtensions
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             dbContext.Database.Migrate();
         }
-
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
         app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseAuthentication();
         app.UseCors("CorsPolicy");
         app.UseAuthorization();
         app.MapControllers();
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        
         app.Lifetime.ApplicationStarted.Register(async () => await app.PreLoadDefaultData());
     }
 
@@ -35,11 +35,11 @@ public static class WebAppExtensions
         using var scope = app.Services.CreateAsyncScope();
 
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-        await roleManager.CreateRolesIfNotExist(["bloodbank", "hospital", "Admin"]);
+        await roleManager.CreateRolesIfNotExist(["bloodbank", "hospital", "admin"]);
 
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
         User? user = scope.ServiceProvider.GetService<IOptions<User>>()?.Value;
-        if(user is not null)await userManager.CreateUserIfNotExist(user, "Admin");
+        if(user is not null)await userManager.CreateUserIfNotExist(user, "admin");
     }
 
     private static async Task CreateUserIfNotExist(this UserManager<User> userManager, User user, string role)

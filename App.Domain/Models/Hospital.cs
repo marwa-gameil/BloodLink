@@ -3,7 +3,6 @@ namespace App.Domain.Models
 {
     public class Hospital
     {
-        public int HospitalId { get; set; }
 
         public float Latitude { get; set; } //coordX 
         public float Longitude { get; set; } //coordY

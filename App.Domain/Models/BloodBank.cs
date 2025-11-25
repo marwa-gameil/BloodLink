@@ -8,7 +8,6 @@ namespace App.Domain.Models
 {
     public class BloodBank
     {
-        public int Id { get; set; }
         public float Latitude { get; set; } //coordX 
         public float Longitude { get; set; } //coordY
 

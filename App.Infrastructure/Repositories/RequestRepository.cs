@@ -30,7 +30,7 @@ namespace App.Infrastructure.Repositories
             _dbSet.Remove(request);
         }
 
-        public async Task<IEnumerable<BloodRequest>> GetAllAsync(int BankId)
+        public async Task<IEnumerable<BloodRequest>> GetAllAsync(Guid BankId)
         {
 
             // return all requests with related hospital and blood bank data
@@ -49,7 +49,7 @@ namespace App.Infrastructure.Repositories
                     EndAt = r.EndAt,
                     Hospital = new Hospital
                     {
-                        HospitalId = r.Hospital.HospitalId,
+                        UserId = r.HospitalId,
                         User = new User
                         {
                             Name = r.Hospital.User.Name,

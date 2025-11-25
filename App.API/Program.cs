@@ -17,6 +17,7 @@ using App.API.Utilities;
     var app = builder.Build();
 
 
-    app.Configure();
+
+app.Configure();
 
     app.Run();

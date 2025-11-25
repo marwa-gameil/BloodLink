@@ -21,9 +21,9 @@ namespace App.Infrastructure.Repositories
                 .Where(g => g.User.Governorate == Governorate).ToListAsync();
 
         }
-        public async Task<BloodBank?> GetByIdAsync(int id)
+        public async Task<BloodBank?> GetByIdAsync(Guid id)
         {
-            return await _dbSet.FirstOrDefaultAsync(b => b.Id == id);
+            return await _dbSet.FirstOrDefaultAsync(b => b.UserId == id);
         }
         public async Task AddAsync(BloodBank bloodBank)
         {
