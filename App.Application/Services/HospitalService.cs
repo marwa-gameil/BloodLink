@@ -195,6 +195,7 @@ public async Task<Result> CreateRequest(CreateRequestDto requestDto)
                 PatientName = r.PatientName,
                 PatientPhoneNumber = r.PatientPhoneNumber,
                 NationalId = r.NationalId,
+                Status = r.Status.ToString(),
                 CreatedAt = r.CreatedAt
             }));
         }

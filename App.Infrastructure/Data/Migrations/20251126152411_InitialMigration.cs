@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigrations : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -168,7 +168,7 @@ namespace App.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BloodBank",
+                name: "BloodBanks",
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -180,9 +180,9 @@ namespace App.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BloodBank", x => x.UserId);
+                    table.PrimaryKey("PK_BloodBanks", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_BloodBank_AspNetUsers_UserId",
+                        name: "FK_BloodBanks_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -190,7 +190,7 @@ namespace App.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hospital",
+                name: "Hospitals",
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -202,9 +202,9 @@ namespace App.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hospital", x => x.UserId);
+                    table.PrimaryKey("PK_Hospitals", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_Hospital_AspNetUsers_UserId",
+                        name: "FK_Hospitals_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -212,7 +212,7 @@ namespace App.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Stock",
+                name: "Stocks",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -225,17 +225,17 @@ namespace App.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stock", x => x.Id);
+                    table.PrimaryKey("PK_Stocks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Stock_BloodBank_BloodBankId",
+                        name: "FK_Stocks_BloodBanks_BloodBankId",
                         column: x => x.BloodBankId,
-                        principalTable: "BloodBank",
+                        principalTable: "BloodBanks",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BloodRequest",
+                name: "BloodRequests",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -253,17 +253,17 @@ namespace App.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BloodRequest", x => x.Id);
+                    table.PrimaryKey("PK_BloodRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BloodRequest_BloodBank_BloodBankId",
+                        name: "FK_BloodRequests_BloodBanks_BloodBankId",
                         column: x => x.BloodBankId,
-                        principalTable: "BloodBank",
+                        principalTable: "BloodBanks",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BloodRequest_Hospital_HospitalId",
+                        name: "FK_BloodRequests_Hospitals_HospitalId",
                         column: x => x.HospitalId,
-                        principalTable: "Hospital",
+                        principalTable: "Hospitals",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -313,18 +313,18 @@ namespace App.Infrastructure.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BloodRequest_BloodBankId",
-                table: "BloodRequest",
+                name: "IX_BloodRequests_BloodBankId",
+                table: "BloodRequests",
                 column: "BloodBankId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BloodRequest_HospitalId",
-                table: "BloodRequest",
+                name: "IX_BloodRequests_HospitalId",
+                table: "BloodRequests",
                 column: "HospitalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Stock_BloodBankId",
-                table: "Stock",
+                name: "IX_Stocks_BloodBankId",
+                table: "Stocks",
                 column: "BloodBankId");
         }
 
@@ -347,19 +347,19 @@ namespace App.Infrastructure.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BloodRequest");
+                name: "BloodRequests");
 
             migrationBuilder.DropTable(
-                name: "Stock");
+                name: "Stocks");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Hospital");
+                name: "Hospitals");
 
             migrationBuilder.DropTable(
-                name: "BloodBank");
+                name: "BloodBanks");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

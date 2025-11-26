@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251125164354_initialMigrations")]
-    partial class initialMigrations
+    [Migration("20251126152411_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,7 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("BloodBank");
+                    b.ToTable("BloodBanks");
                 });
 
             modelBuilder.Entity("App.Domain.Models.BloodRequest", b =>
@@ -98,7 +98,7 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.HasIndex("HospitalId");
 
-                    b.ToTable("BloodRequest");
+                    b.ToTable("BloodRequests");
                 });
 
             modelBuilder.Entity("App.Domain.Models.Hospital", b =>
@@ -124,7 +124,7 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Hospital");
+                    b.ToTable("Hospitals");
                 });
 
             modelBuilder.Entity("App.Domain.Models.Stock", b =>
@@ -154,7 +154,7 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.HasIndex("BloodBankId");
 
-                    b.ToTable("Stock");
+                    b.ToTable("Stocks");
                 });
 
             modelBuilder.Entity("App.Domain.Models.User", b =>

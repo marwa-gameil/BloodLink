@@ -15,6 +15,7 @@ namespace App.Application.DTOs
         public string PatientName { get; set; }
         public string PatientPhoneNumber { get; set; }
         public string NationalId { get; set; }
+        public string Status { get; set; }
         public DateTime CreatedAt { get; set; }
        // public DateTime EndAt { get; set; }
        // public bool IsCanceled { get; set; }

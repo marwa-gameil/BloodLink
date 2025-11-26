@@ -17,7 +17,6 @@ namespace App.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-
                 .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -25,13 +24,11 @@ namespace App.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("App.Domain.Models.BloodBank", b =>
                 {
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<TimeOnly>("EndWorkingHours")
                         .HasColumnType("time");
-
 
                     b.Property<float>("Latitude")
                         .HasColumnType("real");
@@ -43,13 +40,12 @@ namespace App.Infrastructure.Data.Migrations
                     b.Property<float>("Longitude")
                         .HasColumnType("real");
 
-
                     b.Property<TimeOnly>("StartWorkingHours")
                         .HasColumnType("time");
 
                     b.HasKey("UserId");
 
-                    b.ToTable("BloodBank");
+                    b.ToTable("BloodBanks");
                 });
 
             modelBuilder.Entity("App.Domain.Models.BloodRequest", b =>
@@ -59,7 +55,6 @@ namespace App.Infrastructure.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
 
                     b.Property<Guid>("BloodBankId")
                         .HasColumnType("uniqueidentifier");
@@ -72,7 +67,6 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("EndAt")
                         .HasColumnType("datetime2");
-
 
                     b.Property<Guid>("HospitalId")
                         .HasColumnType("uniqueidentifier");
@@ -101,13 +95,11 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.HasIndex("HospitalId");
 
-
-                    b.ToTable("BloodRequest");
+                    b.ToTable("BloodRequests");
                 });
 
             modelBuilder.Entity("App.Domain.Models.Hospital", b =>
                 {
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -116,7 +108,6 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.Property<float>("Latitude")
                         .HasColumnType("real");
-
 
                     b.Property<string>("LicenseNumber")
                         .IsRequired()
@@ -130,7 +121,7 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Hospital");
+                    b.ToTable("Hospitals");
                 });
 
             modelBuilder.Entity("App.Domain.Models.Stock", b =>
@@ -140,7 +131,6 @@ namespace App.Infrastructure.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
 
                     b.Property<Guid>("BloodBankId")
                         .HasColumnType("uniqueidentifier");
@@ -161,13 +151,11 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.HasIndex("BloodBankId");
 
-
-                    b.ToTable("Stock");
+                    b.ToTable("Stocks");
                 });
 
             modelBuilder.Entity("App.Domain.Models.User", b =>
                 {
-
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
@@ -290,7 +278,6 @@ namespace App.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
 
@@ -388,7 +375,6 @@ namespace App.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("App.Domain.Models.BloodBank", b =>
                 {
-
                     b.HasOne("App.Domain.Models.User", "User")
                         .WithOne("BloodBank")
                         .HasForeignKey("App.Domain.Models.BloodBank", "UserId")
@@ -419,7 +405,6 @@ namespace App.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("App.Domain.Models.Hospital", b =>
                 {
-
                     b.HasOne("App.Domain.Models.User", "User")
                         .WithOne("Hospital")
                         .HasForeignKey("App.Domain.Models.Hospital", "UserId")
@@ -439,7 +424,6 @@ namespace App.Infrastructure.Data.Migrations
 
                     b.Navigation("BloodBank");
                 });
-
 
             modelBuilder.Entity("App.Domain.Models.User", b =>
                 {
@@ -510,7 +494,6 @@ namespace App.Infrastructure.Data.Migrations
                 {
                     b.Navigation("BloodRequests");
                 });
-
 
             modelBuilder.Entity("App.Domain.Models.User", b =>
                 {
