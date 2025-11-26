@@ -32,7 +32,7 @@ namespace App.Application.Services
         public async Task<Result<IEnumerable<BloodBankDto>>> GetAllBloodBanksAsync(string Governorate)
         {
             var bank = await _bloodBankRepository.GetAllAsync(Governorate);
-            return Result.Success( bank.ConvertAll(b => new BloodBankDto
+            return Result.Success(bank.ConvertAll(b => new BloodBankDto
             {
                 Id = b.UserId,
                 Name = b.User.Name,
@@ -45,11 +45,13 @@ namespace App.Application.Services
             ));
 
         }
-      
+
         public async Task<Result> AddBloodBankAsync(CreateBloodBankDto CreateBloodBankDto)
         {
+
             var newUser = new User
             {
+                UserName = CreateBloodBankDto.Email, //check
                 Name = CreateBloodBankDto.Name,
                 Address = CreateBloodBankDto.Address,
                 Governorate = CreateBloodBankDto.Governorate,
@@ -59,19 +61,27 @@ namespace App.Application.Services
                 CreatedById = Guid.Parse(_currentLoggedInUser.UserId)
 
             };
-            await _userManager.CreateAsync( newUser,CreateBloodBankDto.Password );
-            await _userManager.AddToRoleAsync(newUser,"bloodbank");
+            var createUserResult = await _userManager.CreateAsync(newUser, CreateBloodBankDto.Password);
+            if (!createUserResult.Succeeded)
+            {
+                return Result.Fail(new Response(
+                    400,
+                    string.Join(", ", createUserResult.Errors.Select(e => e.Description))
+                ));
+            }
+            await _userManager.AddToRoleAsync(newUser, "bloodbank");
 
             var newBank = new BloodBank
-            
+
             {
-               UserId = newUser.Id,
+                UserId = newUser.Id,
                 Latitude = CreateBloodBankDto.Latitude,
                 Longitude = CreateBloodBankDto.Longitude,
                 LicenseNumber = CreateBloodBankDto.LicenseNumber,
             };
             await _bloodBankRepository.AddAsync(newBank);
             await _bloodBankRepository.SaveAsync();
+
 
             foreach (var blood in Enum.GetValues<BloodType>())
             {
@@ -91,6 +101,8 @@ namespace App.Application.Services
 
             return Result.Success(new Response(201, "Blood Bank and Stock created successfully"));
         }
+
+    
 
 
 /*
@@ -178,5 +190,28 @@ namespace App.Application.Services
             return Result.Success();
         }
 
+        public async Task<Result<IEnumerable<StockDto>>> GetStockDetailsAsync(string bloodType = null)
+        {
+
+          bool result = Enum.TryParse<BloodType>(bloodType, out var parsedBloodType);
+          IEnumerable<Stock> stocks = await _stockRepository.GetAllAsync(Guid.Parse(_currentLoggedInUser.UserId));
+            if (result)
+            {
+                return Result.Success(stocks
+                    .Where(s => s.BloodType == parsedBloodType)
+                    .Select(s => new StockDto
+                    {
+                        BloodType = s.BloodType.ToString(),
+                        Quantity = s.Quantity
+                    }));
+
+            }
+            return Result.Success(stocks
+                .Select(s => new StockDto
+                {
+                    BloodType = s.BloodType.ToString(),
+                    Quantity = s.Quantity
+                }));
+        }
     }
 }

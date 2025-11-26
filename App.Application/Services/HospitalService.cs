@@ -41,8 +41,11 @@ namespace App.Application.Services
 
         public async Task<Result> AddHospitalAsync(CreateHospitalDto hospital)
         {
-            var newUser = new User
+            try
             {
+                var newUser = new User
+            {
+                UserName = hospital.Email,
                 Name = hospital.Name,
                 Address = hospital.Address,
                 Governorate = hospital.Governorate,
@@ -52,7 +55,15 @@ namespace App.Application.Services
                 CreatedById = Guid.Parse(_currentLoggedInUser.UserId)
 
             };
-            await _userManager.CreateAsync(newUser, hospital.Password);
+                var createUserResult = await _userManager.CreateAsync(newUser, hospital.Password);
+                if (!createUserResult.Succeeded)
+                {
+                    return Result.Fail(new Response(
+                        400,
+                        string.Join(", ", createUserResult.Errors.Select(e => e.Description))
+                    ));
+                }
+                
             await _userManager.AddToRoleAsync(newUser, "hospital");
 
             var newHospital = new Hospital
@@ -69,27 +80,33 @@ namespace App.Application.Services
 
             return Result.Success(new Response(201, "Hospital created successfully"));
         }
-        
-
-        //public async Task<IEnumerable<Hospital>> GetAllAsync()
-        //{
-        //    return await _hospitalRepo.GetAllAsync();
-        //}
-
-
-        //void IHospitalService.UpdateHospitalAsync(Hospital hospital)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //void IHospitalService.DeleteHospitalAsync(Hospital hospital)
-        //{
-        //    throw new NotImplementedException();
-        //}
+         catch (Exception ex)
+            {
+                return Result.Fail(new Response(500, $"An error occurred: {ex.Message}"));
+            }
+}
 
 
 
-        public async Task<Result> CreateRequest(CreateRequestDto requestDto)
+//public async Task<IEnumerable<Hospital>> GetAllAsync()
+//{
+//    return await _hospitalRepo.GetAllAsync();
+//}
+
+
+//void IHospitalService.UpdateHospitalAsync(Hospital hospital)
+//{
+//    throw new NotImplementedException();
+//}
+
+//void IHospitalService.DeleteHospitalAsync(Hospital hospital)
+//{
+//    throw new NotImplementedException();
+//}
+
+
+
+public async Task<Result> CreateRequest(CreateRequestDto requestDto)
         {
             
             bool result = Enum.TryParse<BloodType>(requestDto.BloodType.ToString(), out var bloodType);

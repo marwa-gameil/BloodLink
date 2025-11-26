@@ -19,6 +19,7 @@ namespace App.Application.Interfaces
         Task<Result> UpdateRqeuestStatusAsync(int requestId,BloodRequestStatus bloodRequestStatus);
         Task<Result<IEnumerable<RequestDto>>> GetAllRequests();
         Task<Result> StockIncreament(StockIncreamentDto stockIncreamentDto);
+        Task<Result<IEnumerable<StockDto>>> GetStockDetailsAsync(string bloodType = null);
 
     }
 }

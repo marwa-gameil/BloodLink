@@ -11,14 +11,13 @@ namespace App.API.Controllers
             => _authService = authService;
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDTO>> Login([FromBody] LoginDTO loginDTO) =>
+        public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO) =>
             HandleResult(await _authService.LoginAsync(loginDTO));
 
         [HttpPost("logout")]
         public async Task<ActionResult> Logout() =>
             HandleResult(await _authService.LogoutAsync());
 
-      
 
     }
 }

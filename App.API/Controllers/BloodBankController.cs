@@ -51,5 +51,9 @@ namespace App.API.Controllers
         public async Task<ActionResult> StockIncreament(StockIncreamentDto stockIncreamentDto) =>
             HandleResult(await _bloodBankService.StockIncreament(stockIncreamentDto));
 
+        [Authorize(Roles = "bloodbank")]
+        [HttpGet("stock")]
+        public async Task<ActionResult<IEnumerable<StockDto>>> GetStockDetails([FromQuery] string bloodType = null) =>
+            HandleResult(await _bloodBankService.GetStockDetailsAsync(bloodType));
     }
 }

@@ -46,7 +46,8 @@ namespace App.Application.Services
                 Name = u.Name,
                 Email = u.Email,
                 Address = u.Address,
-                PhoneNumber = u.PhoneNumber
+                PhoneNumber = u.PhoneNumber,
+                IsActive = u.IsActive
             });
 
             return Result.Success(usersDto);

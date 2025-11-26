@@ -17,6 +17,9 @@ public static class DependencyInjection
      
         services.AddScoped<IBloodBankService, BloodBankService>();
         services.AddScoped<ICurrentLoggedInUser,CurrentLoggedInUser >();
+        services.AddScoped<ICookieAuthService, CookieAuthService>();
+        services.AddScoped<IHospitalService, HospitalService>();
+        services.AddScoped<IUserService, UserService>();    
         return services;
     }
 }
