@@ -30,11 +30,12 @@ namespace App.Infrastructure.Repositories
             _dbSet.Remove(request);
         }
 
-        public async Task<IEnumerable<BloodRequest>> GetAllAsync(int BankId)
+        public async Task<IEnumerable<BloodRequest>> GetAllAsync(Guid BankId)
         {
 
             // return all requests with related hospital and blood bank data
             return await _dbSet
+                
                 .Where(r=>r.BloodBankId == BankId)
                 .Select(r=> new BloodRequest
                 {
@@ -48,9 +49,15 @@ namespace App.Infrastructure.Repositories
                     EndAt = r.EndAt,
                     Hospital = new Hospital
                     {
-                        HospitalId = r.Hospital.HospitalId,
-                        Name = r.Hospital.Name,
-                        Address = r.Hospital.Address
+                        UserId = r.HospitalId,
+                        User = new User
+                        {
+                            Name = r.Hospital.User.Name,
+                            Address = r.Hospital.User.Address,
+                            PhoneNumber = r.Hospital.User.PhoneNumber,
+                            Email = r.Hospital.User.Email,
+                            Governorate = r.Hospital.User.Governorate
+                        }
                     },
                    
                 })
@@ -74,6 +81,12 @@ namespace App.Infrastructure.Repositories
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public IEnumerable<BloodRequest> GetRequestsByHospitalAsync(Guid hospitalId)
+        {
+           return  _dbSet.Where(r => r.HospitalId == hospitalId);
+
         }
     }
 }

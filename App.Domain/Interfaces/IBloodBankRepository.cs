@@ -1,15 +1,10 @@
 ﻿using App.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Domain.Interfaces
 {
     public interface IBloodBankRepository
     {
-        Task<BloodBank?> GetByIdAsync(int id);
+        Task<BloodBank?> GetByIdAsync(Guid id);
         Task<IEnumerable<BloodBank>> GetAllAsync(string Governorate);
         Task AddAsync(BloodBank bloodBank);
         void UpdateAsync(BloodBank bloodBank);

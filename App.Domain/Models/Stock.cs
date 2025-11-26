@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace App.Domain.Models
 {
     public enum BloodType
@@ -21,7 +16,7 @@ namespace App.Domain.Models
     {
         public int Id { get; set; }
 
-        public int BloodBankId { get; set; }      //fk
+        public Guid BloodBankId { get; set; }      //fk
         public BloodBank BloodBank { get; set; }
         public decimal Quantity { get; set; }
         public BloodType BloodType { get; set; }

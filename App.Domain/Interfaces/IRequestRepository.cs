@@ -11,10 +11,16 @@ namespace App.Domain.Interfaces
     public interface IRequestRepository 
     {
         Task<BloodRequest?> GetByIdAsync(int id);
+<<<<<<< HEAD
         Task<IEnumerable<BloodRequest>> GetAllAsync(int BankId);
+=======
+        Task<IEnumerable<BloodRequest>> GetAllAsync(Guid BankId);
+>>>>>>> AddNewEnpoint
         Task AddAsync(BloodRequest request);
         void UpdateAsync(BloodRequest request);
         void DeleteAsync(BloodRequest request);
+        IEnumerable<BloodRequest> GetRequestsByHospitalAsync(Guid hospitalId);
+
         Task SaveAsync();
 
     }

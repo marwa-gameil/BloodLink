@@ -1,11 +1,7 @@
 ﻿using App.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace App.Infrastructure.Data.Configuration
 {
@@ -13,7 +9,13 @@ namespace App.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<BloodBank> builder)
         {
-            
+            builder.HasKey(x => x.UserId);
+
+
+            builder
+                .HasOne(bb => bb.User)
+                .WithOne(u => u.BloodBank)
+                .HasForeignKey<BloodBank>(bb => bb.UserId);
         }
     }
 }
