@@ -18,14 +18,13 @@ public static class ServiceExtensions
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddDbContextPoolConfiguration(configuration);
+        services.AddHttpClient();
 
 
         services.AddIdentityConfiguration(configuration);
         services.AddAuthentication();
         services.AddAuthorization();
-        // uncomment if want to use jwt
-        // DO NOT FORGET TO ADD JWT SETTINGS TO USER SECRETS
-        // services.AddJWTAuthentication(configuration);
+       
         services.AddCorsConfiguration();
         services.AddIISIntegrationConfiguration();
         services.AddControllers();

@@ -1,14 +1,13 @@
-using App.Web.Data;
-using App.Infrastructure.Data;
+using App.Application.Interfaces;
+using App.Application.Services;
 using App.Application.Utilities;
+using App.Domain.Models;
+using App.Infrastructure.Data;
 using App.Infrastructure.Utilities;
-
+using App.Web.Data;
+using App.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using App.Application.Utilities;     
-using App.Infrastructure.Utilities;
-using App.Infrastructure.Data;
-
 
 namespace App.Web
 {
@@ -18,32 +17,69 @@ namespace App.Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            
-            // Register ApplicationDbContext for Identity
-            builder.Services.AddDbContext<App.Web.Data.ApplicationDbContext>(options =>
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                                   ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
+            // -------------------------------
+            // Identity DbContext (Web Layer)
+            // -------------------------------
+            builder.Services.AddDbContext<Data.ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
+            builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+            })
+            .AddEntityFrameworkStores<Data.ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+            // -------------------------------
+            // Infrastructure DbContext (Business Layer)
+            // -------------------------------
+            builder.Services.AddDbContext<App.Infrastructure.Data.ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            // Register Infrastructure ApplicationDbContext for business logic
-            builder.Services.AddDbContext<App.Infrastructure.Data.ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            // -------------------------------
+            // Application Services & Repositories
+            // -------------------------------
+            builder.Services.AddServices();       
+            builder.Services.AddRepositories();   
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<App.Web.Data.ApplicationDbContext>();
+            // -------------------------------
+            // HttpClient
+            // -------------------------------
+            builder.Services.AddHttpClient<Services.BloodBankService>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:5234");
+            });
+
+            builder.Services.AddHttpClient<HospitalServices>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:5234");
+            });
+
+            builder.Services.AddHttpClient<UserWebService>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:5234");
+            });
+            builder.Services.AddScoped<AuthWebService>();
+
+            builder.Services.AddScoped<ICookieAuthService, CookieAuthService>();
+
+
+            // -------------------------------
+            // MVC + Razor Pages
+            // -------------------------------
             builder.Services.AddControllersWithViews();
-
-            // Register Application Services and Repositories
-            builder.Services.AddServices();
-            builder.Services.AddRepositories();
-
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // -------------------------------
+            // Middleware
+            // -------------------------------
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -59,8 +95,12 @@ namespace App.Web
 
             app.UseRouting();
 
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
+            // -------------------------------
+            // Routes
+            // -------------------------------
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

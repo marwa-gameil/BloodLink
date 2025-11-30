@@ -51,7 +51,7 @@ namespace App.Application.Services
 
             var newUser = new User
             {
-                UserName = CreateBloodBankDto.Email, //check
+                UserName = CreateBloodBankDto.Email, 
                 Name = CreateBloodBankDto.Name,
                 Address = CreateBloodBankDto.Address,
                 Governorate = CreateBloodBankDto.Governorate,
