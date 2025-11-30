@@ -122,7 +122,7 @@ dotnet build
   * `GET /api/bloodrequests` – Retrieve all blood requests
   * `POST /api/bloodrequests` – Create a new blood request
 
-> For full API documentation, see [API Documentation](docs/API.md) (if available).
+> For full API documentation, see [API Documentation](docs/API.md) .
 
 ---
 
