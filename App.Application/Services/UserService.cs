@@ -70,5 +70,27 @@ namespace App.Application.Services
                 })
             };
         }
+        public async Task<Result> AddUserAsync(CreateUserDto createUserDto)
+        {
+            var user = new User
+            {
+                UserName = createUserDto.Email,
+                Email = createUserDto.Email,
+                Name = createUserDto.Name,
+                Address = createUserDto.Address,
+                PhoneNumber = createUserDto.PhoneNumber,
+                IsActive = true
+            };
+            if (await _manager.FindByEmailAsync(createUserDto.Email) != null)
+                return Result.Fail("Email already exists");
+
+            var result = await _manager.CreateAsync(user, createUserDto.Password);
+            if (!result.Succeeded)
+            {
+                var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+                return Result.Fail(AppResponses.BadRequestResponse($"Failed to create user: {errors}"));
+            }
+            return Result.Success();
+        }
     }
 }

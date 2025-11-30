@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace App.API.Controllers
+
 {
+    [Route("api/[controller]")]
+
     [Authorize(Roles = "admin") ]
     public class UserController : ApiBaseController
     {
@@ -23,6 +26,9 @@ namespace App.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeactivateUser(Guid id) =>
             HandleResult(await _userService.DeactivateAsync(id));
+        [HttpPost("Add_User")]
+        public async Task<ActionResult> AddUser(CreateUserDto createUserDto) =>
+            HandleResult(await _userService.AddUserAsync(createUserDto));
 
     }
 }

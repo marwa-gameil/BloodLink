@@ -14,5 +14,6 @@ namespace App.Application.Interfaces
         Task<Result<IEnumerable<UserDTO>>> GetAll();
         Task<Result<UserDTO>> GetByEmailAsync(string email);
         Task<Result> DeactivateAsync(Guid id);
+        Task<Result> AddUserAsync(CreateUserDto createUserDto);
     }
 }
