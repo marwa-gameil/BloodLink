@@ -4,39 +4,39 @@ using App.Application.Utilities;
 using App.Domain.Models;
 using App.Infrastructure.Data;
 using App.Infrastructure.Utilities;
-using App.Web.Data;
 using App.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using DotNetEnv;
 
 namespace App.Web
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            Env.Load();
+            builder.Configuration.AddEnvironmentVariables();
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
                                    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
             // -------------------------------
             // Identity DbContext (Web Layer)
             // -------------------------------
-            builder.Services.AddDbContext<Data.ApplicationDbContext>(options =>
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = false;
             })
-            .AddEntityFrameworkStores<Data.ApplicationDbContext>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
             // -------------------------------
             // Infrastructure DbContext (Business Layer)
             // -------------------------------
-            builder.Services.AddDbContext<App.Infrastructure.Data.ApplicationDbContext>(options =>
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -44,8 +44,8 @@ namespace App.Web
             // -------------------------------
             // Application Services & Repositories
             // -------------------------------
-            builder.Services.AddServices();       
-            builder.Services.AddRepositories();   
+            builder.Services.AddServices();
+            builder.Services.AddRepositories();
 
             // -------------------------------
             // HttpClient
@@ -65,9 +65,7 @@ namespace App.Web
                 client.BaseAddress = new Uri("http://localhost:5234");
             });
             builder.Services.AddScoped<AuthWebService>();
-
             builder.Services.AddScoped<ICookieAuthService, CookieAuthService>();
-
 
             // -------------------------------
             // MVC + Razor Pages
@@ -76,6 +74,29 @@ namespace App.Web
             builder.Services.AddRazorPages();
 
             var app = builder.Build();
+
+            // -------------------------------
+            // Seed Default Admin User & Roles
+            // -------------------------------
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var userManager = services.GetRequiredService<UserManager<User>>();
+                var roleManager = services.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+
+                // Seeding roles
+                string[] roles = new[] { "Admin", "Hospital", "BloodBank" };
+                foreach (var role in roles)
+                {
+                    if (await roleManager.FindByNameAsync(role) == null)
+                    {
+                        await roleManager.CreateAsync(new IdentityRole<Guid>(role));
+                    }
+                }
+
+                // Seeding default admin user
+          
+            }
 
             // -------------------------------
             // Middleware
@@ -95,7 +116,7 @@ namespace App.Web
 
             app.UseRouting();
 
-            app.UseAuthentication(); 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             // -------------------------------
@@ -107,7 +128,7 @@ namespace App.Web
 
             app.MapRazorPages();
 
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

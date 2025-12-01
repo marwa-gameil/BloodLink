@@ -1,5 +1,4 @@
 ﻿using App.Application.DTOs;
-using App.Domain.Models;
 
 namespace App.Web.Services
 {
@@ -50,7 +49,7 @@ namespace App.Web.Services
             var response = await _httpClient.PutAsJsonAsync("api/bloodbank/stock/increment", stockIncreamentDto);
             return response.IsSuccessStatusCode;
         }
-        public async Task<IEnumerable<StockDto>> GetStockDetailsAsync(string bloodType = null)
+        public async Task<IEnumerable<StockDto>?> GetStockDetailsAsync(string bloodType = null)
         {
             var url = "api/bloodbank/stock";
             if (!string.IsNullOrWhiteSpace(bloodType))

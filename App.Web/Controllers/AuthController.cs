@@ -12,31 +12,33 @@ namespace App.Web.Controllers
         {
             _authWebService = authWebService;
         }
+
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> LogIn(LoginDTO loginDTO)
+        public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
             if (!ModelState.IsValid)
                 return View(loginDTO);
 
-            
-                var result = await _authWebService.LoginAsync(loginDTO);
-                if (!result)
-                {
+            var result = await _authWebService.LoginAsync(loginDTO);
+            if (!result)
+            {
                 ModelState.AddModelError("", "Invalid email or password.");
                 return View(loginDTO);
-                }
-            return RedirectToAction("Index", "Home");
+            }
 
+            return RedirectToAction("Index", "Dashboard");
         }
+
         public async Task<IActionResult> Logout()
         {
             await _authWebService.LogoutAsync();
-            return RedirectToAction("Login", "Auth");
+            return RedirectToAction("Login");
         }
     }
 }

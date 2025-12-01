@@ -28,18 +28,22 @@ public class CookieAuthService : ICookieAuthService
     public async Task<Result> LoginAsync(LoginDTO loginDTO)
     {
         User? user = await _userManager.FindByEmailAsync(loginDTO.Email);
+     
         if (user is null)
             return Result.Fail(AppResponses.UnAuthorizedResponse);
 
-        
         if (!user.IsActive)
             return Result.Fail(AppResponses.UnAuthorizedResponse);
 
         var result = await _signInManager.PasswordSignInAsync(user, loginDTO.Password, false, false);
+
         if (result.Succeeded)
+        {
             return Result.Success();
+        }
 
         return Result.Fail(AppResponses.UnAuthorizedResponse);
+
     }
 
     public async Task<Result> LogoutAsync()

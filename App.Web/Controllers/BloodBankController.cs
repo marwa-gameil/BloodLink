@@ -11,8 +11,9 @@ namespace App.Web.Controllers
         {
             _bloodBankService = bloodBankService;
         }
-        public async Task<IActionResult> GetBloodBanks(string govern)
+        public async Task<IActionResult> GetBloodBanks([FromQuery]string govern)
         {
+            Console.WriteLine($"Govern: {govern}");
             var list = await _bloodBankService.GetBloodBanksAsync(govern);
             return View(list);
 

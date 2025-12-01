@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="max-w-6xl mx-auto mt-10">
+    <h1 class="text-3xl font-bold text-red-600 mb-6">Admin Dashboard</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white shadow rounded">
+            <h3 class="text-xl font-semibold mb-4">Blood Banks</h3>
+            <p class="text-gray-600 mb-4">Manage blood banks in the system</p>
+
+            <form asp-controller="BloodBank" asp-action="GetBloodBanks" method="get">
+                <label class="block mb-2 font-medium">Select Governorate</label>
+
+                <select name="govern"
+                        class="w-full border rounded px-3 py-2 mb-4">
+                    <option value="">-- All Governorates --</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Giza">Giza</option>
+                    <option value="Alexandria">Alexandria</option>
+                    <option value="Dakahlia">Dakahlia</option>
+                    <option value="Sharqia">Sharqia</option>
+                    <option value="Gharbia">Gharbia</option>
+                    <option value="Monufia">Monufia</option>
+                    <option value="Fayoum">Fayoum</option>
+                    <option value="Asyut">Asyut</option>
+                    <option value="Sohag">Sohag</option>
+                    <option value="Qena">Qena</option>
+                    <option value="Luxor">Luxor</option>
+                    <option value="Aswan">Aswan</option>
+                </select>
+
+                <button type="submit"
+                        class="text-red-600 font-semibold">
+                    View Blood Banks →
+                </button>
+            </form>
+        </div>
+
+
+        <div class="p-6 bg-white shadow rounded">
+            <h3 class="text-xl font-semibold mb-2">Hospitals</h3>
+            <p class="text-gray-600">Manage hospitals</p>
+            <a asp-controller="Hospital" asp-action="Index"
+               class="text-red-600 font-semibold mt-2 inline-block">
+                View Hospitals →
+            </a>
+        </div>
+
+        <div class="p-6 bg-white shadow rounded">
+            <h3 class="text-xl font-semibold mb-2">Users</h3>
+            <p class="text-gray-600">System users and roles</p>
+            <span class="text-gray-400 text-sm">Coming soon</span>
+        </div>
+    </div>
+</div>
