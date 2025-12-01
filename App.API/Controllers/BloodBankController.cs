@@ -16,7 +16,7 @@ namespace App.API.Controllers
             _bloodBankService = bloodBankService;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BloodBankDto>>> GetAll(string Governorate) =>
+        public async Task<ActionResult<IEnumerable<BloodBankDto>>> GetAll([FromQuery]string Governorate) =>
              HandleResult(await _bloodBankService.GetAllBloodBanksAsync(Governorate));
 
         [Authorize(Roles = "admin")]

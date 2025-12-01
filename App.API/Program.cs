@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
 using Microsoft.Extensions.DependencyInjection;
 using App.API.Utilities;
+using App.Application.Services;
 
-    var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
     Env.Load();
     builder.Configuration.AddEnvironmentVariables();
@@ -14,7 +15,8 @@ using App.API.Utilities;
     builder.Services.Configure(builder.Configuration);
 
 
-    var app = builder.Build();
+
+var app = builder.Build();
 
 
 
