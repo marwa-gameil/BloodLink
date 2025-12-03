@@ -11,6 +11,7 @@ namespace App.Domain.Models
     {
         public Guid UserId { get; set; } //fk /pk to user
         public User User { get; set; }
+        public string? BloodBankName { get; set; }
         public float Latitude { get; set; } //coordX 
         public float Longitude { get; set; } //coordY
 

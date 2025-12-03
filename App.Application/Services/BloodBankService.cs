@@ -35,7 +35,7 @@ namespace App.Application.Services
             return Result.Success(bank.ConvertAll(b => new BloodBankDto
             {
                 Id = b.UserId,
-                Name = b.User.Name,
+                Name = b.BloodBankName,
                 Address = b.User.Address,
                 ContactNumber = b.User.PhoneNumber,
                 Email = b.User.Email,
@@ -75,6 +75,7 @@ namespace App.Application.Services
 
             {
                 UserId = newUser.Id,
+                BloodBankName = CreateBloodBankDto.Name,
                 Latitude = CreateBloodBankDto.Latitude,
                 Longitude = CreateBloodBankDto.Longitude,
                 LicenseNumber = CreateBloodBankDto.LicenseNumber,

@@ -85,7 +85,9 @@ namespace App.Infrastructure.Repositories
 
         public IEnumerable<BloodRequest> GetRequestsByHospitalAsync(Guid hospitalId)
         {
-           return  _dbSet.Where(r => r.HospitalId == hospitalId);
+           return  _dbSet
+                .Include(r =>r.BloodBank)
+                .Where(r => r.HospitalId == hospitalId);
 
         }
     }
