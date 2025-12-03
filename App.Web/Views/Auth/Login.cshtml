@@ -1,0 +1,115 @@
+﻿@model App.Application.DTOs.LoginDTO
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-600 p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-slideUp">
+
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-red-400 to-pink-500 text-white text-center p-10">
+            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-4 text-3xl">
+                <i class="fas fa-sign-in-alt"></i>
+            </div>
+            <h1 class="text-3xl font-bold mb-1">Welcome Back</h1>
+            <p class="text-sm opacity-90">Blood Bank Management System</p>
+        </div>
+
+        <!-- Body -->
+        <div class="p-8">
+            <form asp-action="Login" method="post" class="space-y-6">
+
+                <!-- Error Messages -->
+                @if (ViewData.ModelState.Values.Any(v => v.Errors.Any()))
+                {
+                    <div class="bg-red-100 border border-red-400 text-red-700 rounded-lg p-4 flex items-start gap-2">
+                        <i class="fas fa-exclamation-circle mt-1"></i>
+                        <div>
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <p>@error.ErrorMessage</p>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <!-- Email Field -->
+                <div class="space-y-1">
+                    <label asp-for="Email" class="block font-semibold text-gray-700 text-sm">Email Address</label>
+                    <div class="relative">
+                        <input asp-for="Email"
+                               type="email"
+                               placeholder="Enter your email"
+                               class="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 @((ViewData.ModelState.ContainsKey("Email") && ViewData.ModelState["Email"].Errors.Any()) ? "border-red-500" : "border-gray-300") bg-gray-100" />
+                        <i class="fas fa-envelope absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    <span asp-validation-for="Email" class="text-red-500 text-xs mt-1 block"></span>
+                </div>
+
+                <!-- Password Field -->
+                <div class="space-y-1">
+                    <label asp-for="Password" class="block font-semibold text-gray-700 text-sm">Password</label>
+                    <div class="relative">
+                        <input asp-for="Password"
+                               type="password"
+                               placeholder="Enter your password"
+                               class="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 @((ViewData.ModelState.ContainsKey("Password") && ViewData.ModelState["Password"].Errors.Any()) ? "border-red-500" : "border-gray-300") bg-gray-100" />
+                        <i class="fas fa-lock absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    <span asp-validation-for="Password" class="text-red-500 text-xs mt-1 block"></span>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" name="rememberMe" class="w-4 h-4 accent-pink-400" />
+                    <label class="text-gray-600 text-sm">Remember me</label>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-red-400 to-pink-500 text-white py-3 rounded-xl font-semibold text-lg hover:shadow-lg hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-arrow-right"></i>
+                    Sign In
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-100 text-center p-6 border-t border-gray-200">
+            <p class="text-sm text-gray-600">Don't have an account? <a href="#" class="text-pink-500 font-semibold hover:text-pink-600">Create one</a></p>
+            <p class="mt-2 text-xs"><a href="#" class="text-pink-500 font-semibold hover:text-pink-600">Forgot your password?</a></p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        // Hide empty validation spans
+        document.querySelectorAll('span[data-valmsg-for]').forEach(el => {
+            if (!el.textContent.trim()) el.classList.add('hidden');
+        });
+    </script>
+
+    <style>
+        @keyframes slideUp {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .animate-slideUp {
+            animation: slideUp 0.5s ease-out;
+        }
+    </style>
+}

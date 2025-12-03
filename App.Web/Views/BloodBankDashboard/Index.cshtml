@@ -1,0 +1,58 @@
+﻿@model App.Application.DTOs.BloodBankDashboardDto
+@{
+    ViewData["Title"] = "Blood Bank Dashboard";
+}
+
+<div class="max-w-6xl mx-auto mt-10 p-4">
+    <h1 class="text-4xl font-bold text-red-600 mb-8 text-center">Blood Bank Dashboard</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Blood Stock Card -->
+        <div class="bg-gradient-to-r from-red-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-2xl font-semibold">Blood Stock</h3>
+                <i class="fas fa-tint text-3xl opacity-80"></i>
+            </div>
+            <p class="text-3xl font-bold mb-2">@Model.TotalBloodUnits</p>
+            <p class="opacity-90 mb-4">Available blood units</p>
+            <a asp-controller="Stock" asp-action="Index"
+               class="inline-block bg-white text-red-500 font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                View Stock →
+            </a>
+        </div>
+
+        <!-- Requests Card -->
+        <div class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-2xl font-semibold">Requests</h3>
+                <i class="fas fa-file-medical text-3xl opacity-80"></i>
+            </div>
+            <p class="text-3xl font-bold mb-2">@Model.NewRequestsToday</p>
+            <p class="opacity-90 mb-4">New requests today</p>
+            <a asp-controller="Requests" asp-action="Index"
+               class="inline-block bg-white text-purple-600 font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                View Requests →
+            </a>
+        </div>
+
+        <!-- Donors Card -->
+        <div class="bg-gradient-to-r from-green-400 to-teal-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-2xl font-semibold">Donors</h3>
+                <i class="fas fa-users text-3xl opacity-80"></i>
+            </div>
+            <p class="text-3xl font-bold mb-2">@Model.TotalDonors</p>
+            <p class="opacity-90 mb-4">Registered donors</p>
+            <a asp-controller="Donors" asp-action="Index"
+               class="inline-block bg-white text-green-500 font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                View Donors →
+            </a>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+}

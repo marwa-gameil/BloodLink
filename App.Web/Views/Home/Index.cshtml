@@ -1,0 +1,112 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home";
+}
+
+<!-- Hero Section -->
+<div class="relative bg-cover bg-center" style="background-image: url('/images/hero-bg.jpg');">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center relative z-10">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6">Connecting Lives Through Blood Donation</h1>
+        <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+            Your contribution can save a life. Join us in making a difference today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/Requests" class="bg-red-700 hover:bg-red-800 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition transform hover:-translate-y-1">
+                View Requests
+            </a>
+            <a href="/Requests/Create" class="bg-white text-red-700 border-2 border-red-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-50 shadow-lg transition transform hover:-translate-y-1">
+                Make a Request
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- Card 1 -->
+    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
+        <img src="/images/find-donor.svg" class="w-16 h-16 mb-4 mx-auto" alt="Find Donors">
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Find Donors</h3>
+        <p class="text-gray-700">Connect with registered blood donors in your area quickly and efficiently.</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
+        <img src="/images/track-inventory.svg" class="w-16 h-16 mb-4 mx-auto" alt="Track Inventory">
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Track Inventory</h3>
+        <p class="text-gray-700">Real-time blood stock monitoring across all blood banks and hospitals.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
+        <img src="/images/save-lives.svg" class="w-16 h-16 mb-4 mx-auto" alt="Save Lives">
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Save Lives</h3>
+        <p class="text-gray-700">Every donation matters. Be part of a lifesaving network in your community.</p>
+    </div>
+
+</div>
+
+<!-- Why Donate Section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col md:flex-row items-center gap-8">
+
+    <div class="md:w-1/2 flex justify-center">
+        <img src="/images/why-donate.jpg" alt="Why Donate" class="rounded-xl shadow-lg w-4/5 md:w-3/4 lg:w-2/3 max-h-80 object-contain">
+    </div>
+
+
+    <div class="md:w-1/2">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Donate Blood?</h2>
+        <p class="text-gray-700 mb-4">
+            Blood donation is a simple yet powerful way to save lives. Your contribution can support hospitals, help patients in emergencies, and strengthen community health.
+        </p>
+        <p class="text-gray-700">
+            Join thousands of donors today and be part of a compassionate network making a real difference.
+        </p>
+    </div>
+</div>
+
+
+</div>
+
+<!-- Latest Requests Section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Latest Blood Requests</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Ali Ahmed</h3>
+            <p class="text-gray-700">Blood Type: O+</p>
+            <p class="text-gray-700">City: Cairo</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Mona Saleh</h3>
+            <p class="text-gray-700">Blood Type: A-</p>
+            <p class="text-gray-700">City: Alexandria</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Khaled Nabil</h3>
+            <p class="text-gray-700">Blood Type: B+</p>
+            <p class="text-gray-700">City: Giza</p>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="bg-red-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div>
+            <div class="text-5xl font-bold mb-2">500+</div>
+            <div class="text-xl">Active Donors</div>
+        </div>
+        <div>
+            <div class="text-5xl font-bold mb-2">1000+</div>
+            <div class="text-xl">Lives Saved</div>
+        </div>
+        <div>
+            <div class="text-5xl font-bold mb-2">50+</div>
+            <div class="text-xl">Partner Hospitals</div>
+        </div>
+    </div>
+</div>
+

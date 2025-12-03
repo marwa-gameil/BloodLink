@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BloodLink</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/App.Web.styles.css" asp-append-version="true" />
+</head>
+<body class="flex flex-col min-h-screen bg-white">
+    <!-- HEADER -->
+    <header class="bg-red-600 shadow-lg sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a class="flex items-center text-2xl font-bold text-white hover:text-red-100 transition-colors"
+                   asp-area="" asp-controller="Home" asp-action="Index">
+
+                    <img src="~/images/logoBlack.svg" alt="BloodLink Logo" class="h-12 w-auto mr-2" />
+
+
+                    BloodLink
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="text-white hover:text-red-100 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Home</a>
+                    <a asp-area="" asp-controller="Requests" asp-action="Index" class="text-white hover:text-red-100 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Requests</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-white hover:text-red-100 px-3 py-2 rounded-md text-sm font-semibold transition-colors">About</a>
+                    <partial name="_LoginPartial" />
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-white hover:text-red-100 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-red-600 z-50 shadow-lg">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="block text-white hover:text-red-100 px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a asp-area="" asp-controller="Requests" asp-action="Index" class="block text-white hover:text-red-100 px-3 py-2 rounded-md text-base font-medium">Requests</a>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="block text-white hover:text-red-100 px-3 py-2 rounded-md text-base font-medium">About</a>
+                <div class="px-3 py-2 border-t border-red-500 mt-2 pt-2">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+        @RenderBody()
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-red-600 text-white mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">BloodLink</h3>
+                    <p class="text-red-100">Connecting lives through blood donation. Together, we save lives.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index" class="text-red-100 hover:text-white transition-colors">Home</a></li>
+                        <li><a asp-area="" asp-controller="Requests" asp-action="Index" class="text-red-100 hover:text-white transition-colors">Requests</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-red-100 hover:text-white transition-colors">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <p class="text-red-100">Email: info@bloodlink.com</p>
+                    <p class="text-red-100">Phone: +20 123 456 7890</p>
+                </div>
+            </div>
+            <div class="border-t border-red-500 mt-8 pt-6">
+                <p class="text-center text-red-100">
+                    &copy; 2025 BloodLink. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Mobile menu toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+    ```
+
+</body>
+</html>

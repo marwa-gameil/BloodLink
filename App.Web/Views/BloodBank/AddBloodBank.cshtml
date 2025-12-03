@@ -1,0 +1,23 @@
+﻿@model IEnumerable<App.Application.DTOs.BloodBankDto>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Blood Banks List";
+}
+
+<div class="max-w-6xl mx-auto mt-10 p-4">
+    <h1 class="text-2xl font-bold mb-6 text-center">Blood Banks</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach (var bank in Model)
+        {
+            <div class="bg-white shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-shadow">
+                <h2 class="text-xl font-semibold mb-2">@bank.Name</h2>
+                <p class="text-gray-600 mb-1"><strong>Email:</strong> @bank.Email</p>
+                <p class="text-gray-600 mb-1"><strong>Phone:</strong> @bank.PhoneNumber</p>
+                <p class="text-gray-600 mb-1"><strong>Address:</strong> @bank.Address, @bank.Governorate</p>
+                <p class="text-gray-600 mb-1"><strong>License:</strong> @bank.LicenseNumber</p>
+                <p class="text-gray-600"><strong>Location:</strong> (@bank.Latitude, @bank.Longitude)</p>
+            </div>
+        }
+    </div>
+</div>
