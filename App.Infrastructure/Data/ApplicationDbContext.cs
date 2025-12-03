@@ -14,7 +14,7 @@ public sealed class ApplicationDbContext: IdentityDbContext<User, IdentityRole<G
     public DbSet<BloodBank> BloodBanks { get; set; }
     public DbSet<Hospital> Hospitals { get; set; }
     public DbSet<Stock> Stocks { get; set; }
-    public DbSet<User> Users { get; set; }
+    //public DbSet<User> Users { get; set; }
   
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -190,6 +190,7 @@ public async Task<Result> CreateRequest(CreateRequestDto requestDto)
             return Result.Success( requests.Select(r => new RequestDto
             {
                 Id = r.Id,
+                BloodBankName = r.BloodBank.BloodBankName,
                 Quantity = r.Quantity,
                 BloodType = r.BloodType.ToString(),
                 PatientName = r.PatientName,
