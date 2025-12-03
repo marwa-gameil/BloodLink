@@ -12,13 +12,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:App.Infrastructure/Data/Migrations/20251130072953_initialMigrations.Designer.cs
-    [Migration("20251130072953_initialMigrations")]
-    partial class initialMigrations
-========
+
     [Migration("20251203143755_secondMigrations")]
     partial class secondMigrations
->>>>>>>> master:App.Infrastructure/Data/Migrations/20251203143755_secondMigrations.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

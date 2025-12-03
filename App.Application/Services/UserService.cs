@@ -102,6 +102,7 @@ namespace App.Application.Services
                 ));
             }
 
+            await _manager.AddToRoleAsync(newUser, "admin");
             var userDto = new UserDTO
             {
                 Id = newUser.Id,

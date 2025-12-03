@@ -6,11 +6,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:App.Infrastructure/Data/Migrations/20251130072953_initialMigrations.cs
-    public partial class initialMigrations : Migration
-========
+
     public partial class secondMigrations : Migration
->>>>>>>> master:App.Infrastructure/Data/Migrations/20251203143755_secondMigrations.cs
+
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
