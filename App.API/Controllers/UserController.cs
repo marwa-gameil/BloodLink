@@ -26,9 +26,10 @@ namespace App.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeactivateUser(Guid id) =>
             HandleResult(await _userService.DeactivateAsync(id));
-        [HttpPost("Add_User")]
-        public async Task<ActionResult> AddUser(CreateUserDto createUserDto) =>
-            HandleResult(await _userService.AddUserAsync(createUserDto));
+
+        [HttpPost("Add")]
+        public async Task<ActionResult<UserDTO>> AddUser([FromBody] AddUserDTO dto) =>
+            HandleResult(await _userService.AddUserAsync(dto));
 
     }
 }

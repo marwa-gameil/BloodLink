@@ -10,15 +10,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace App.Application.Services
 {
     internal class UserService : IUserService
     {
         private readonly UserManager<User> _manager;
+
         public UserService(UserManager<User> manager)
         {
             _manager = manager;
+            
         }
         public async Task<Result> DeactivateAsync(Guid id)
         {
@@ -70,27 +73,47 @@ namespace App.Application.Services
                 })
             };
         }
-        public async Task<Result> AddUserAsync(CreateUserDto createUserDto)
-        {
-            var user = new User
-            {
-                UserName = createUserDto.Email,
-                Email = createUserDto.Email,
-                Name = createUserDto.Name,
-                Address = createUserDto.Address,
-                PhoneNumber = createUserDto.PhoneNumber,
-                IsActive = true
-            };
-            if (await _manager.FindByEmailAsync(createUserDto.Email) != null)
-                return Result.Fail("Email already exists");
 
-            var result = await _manager.CreateAsync(user, createUserDto.Password);
-            if (!result.Succeeded)
+        public async Task<Result<UserDTO>> AddUserAsync(AddUserDTO dto)
+        {
+            // Check email duplication
+            var existingUser = await _manager.FindByEmailAsync(dto.Email);
+            if (existingUser != null)
             {
-                var errors = string.Join(", ", result.Errors.Select(e => e.Description));
-                return Result.Fail(AppResponses.BadRequestResponse($"Failed to create user: {errors}"));
+                return Result.Fail<UserDTO>(AppResponses.BadRequestResponse("Email already exists."));
             }
-            return Result.Success();
+
+            var newUser = new User
+            {
+                UserName = dto.Email,
+                Name = dto.Name,
+                Address = dto.Address,
+                PhoneNumber = dto.PhoneNumber,
+                Email = dto.Email,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            var createUserResult = await _manager.CreateAsync(newUser, dto.Password);
+
+            if (!createUserResult.Succeeded)
+            {
+                return Result.Fail<UserDTO>(AppResponses.BadRequestResponse(
+                    string.Join(", ", createUserResult.Errors.Select(e => e.Description))
+                ));
+            }
+
+            var userDto = new UserDTO
+            {
+                Id = newUser.Id,
+                Name = newUser.Name,
+                Email = newUser.Email,
+                Address = newUser.Address,
+                PhoneNumber = newUser.PhoneNumber
+            };
+
+            return Result.Success(userDto);
         }
+
+
     }
 }
