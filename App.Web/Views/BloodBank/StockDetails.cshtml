@@ -1,4 +1,4 @@
-﻿@model IEnumerable<App.Application.DTOs.BloodStockDto>
+﻿@model IEnumerable<App.Application.DTOs.StockDto>
 @{
     ViewData["Title"] = "Stock Details";
 }
@@ -13,10 +13,9 @@
 
                 <h2 class="text-xl font-semibold mb-2">Blood Type: @stock.BloodType</h2>
                 <p class="text-gray-600 mb-1"><strong>Quantity:</strong> @stock.Quantity Units</p>
-                <p class="text-gray-600 mb-4"><strong>Last Updated:</strong> @stock.LastUpdated.ToShortDateString()</p>
 
                 <div class="flex gap-3">
-                    <a asp-action="Edit" asp-route-id="@stock.Id"
+                    <a asp-action="Edit" asp-route-id="@stock"
                        class="flex-1 text-center py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
                         <i class="fas fa-edit mr-2"></i>Update
                     </a>

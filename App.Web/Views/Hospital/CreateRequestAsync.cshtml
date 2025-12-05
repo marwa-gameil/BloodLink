@@ -15,12 +15,12 @@
 
     <form asp-action="CreateRequestAsync" method="post" class="space-y-4">
 
-        <!-- Hospital Name -->
+        @* <!-- Hospital Name -->
         <div class="space-y-1">
             <label asp-for="HospitalName" class="block text-gray-700 font-semibold">Hospital Name</label>
             <input asp-for="HospitalName" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none bg-gray-100" />
             <span asp-validation-for="HospitalName" class="text-red-500 text-sm"></span>
-        </div>
+        </div> *@
 
         <!-- Blood Type -->
         <div class="space-y-1">
@@ -46,7 +46,7 @@
             <span asp-validation-for="Quantity" class="text-red-500 text-sm"></span>
         </div>
 
-        <!-- Priority -->
+       @*  <!-- Priority -->
         <div class="space-y-1">
             <label asp-for="Priority" class="block text-gray-700 font-semibold">Priority</label>
             <select asp-for="Priority" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none bg-gray-100">
@@ -63,7 +63,7 @@
             <label asp-for="Notes" class="block text-gray-700 font-semibold">Notes</label>
             <textarea asp-for="Notes" rows="3" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none bg-gray-100" placeholder="Optional"></textarea>
             <span asp-validation-for="Notes" class="text-red-500 text-sm"></span>
-        </div>
+        </div> *@
 
         <!-- Submit Button -->
         <button type="submit" class="w-full py-3 bg-gradient-to-r from-red-400 to-pink-500 text-white font-bold rounded-lg hover:shadow-lg hover:-translate-y-1 transition-transform">
@@ -78,7 +78,7 @@
     }
 
     <style>
-        @keyframes slideUp {
+        @@keyframes slideUp {
             from
 
         {

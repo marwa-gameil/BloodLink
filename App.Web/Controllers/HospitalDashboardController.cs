@@ -6,6 +6,10 @@ public class HospitalDashboardController : Controller
 {
     public IActionResult Index()
     {
-        return View();
+        var model = new HospitalDashboardVM();
+
+        model.NewRequestsToday = 0; // placeholder
+
+        return View(model);
     }
 }

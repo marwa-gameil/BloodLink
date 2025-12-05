@@ -2,51 +2,52 @@
     ViewData["Title"] = "Hospital Dashboard";
 }
 
-<div class="max-w-6xl mx-auto mt-10 p-4">
-    <h1 class="text-4xl font-bold text-red-600 mb-8 text-center">Hospital Dashboard</h1>
+<div class="max-w-6xl mx-auto mt-10">
+    <h1 class="text-3xl font-bold mb-8 text-center" style="color:#B71C1C;">
+        Hospital Dashboard
+    </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
         <!-- Blood Requests Card -->
-        <div class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-2xl font-semibold">Blood Requests</h3>
-                <i class="fas fa-file-medical text-3xl opacity-80"></i>
+        <div class="p-8 rounded-2xl shadow-lg border border-[#B71C1C] hover:shadow-2xl hover:-translate-y-2
+                    transform transition duration-300 bg-white cursor-pointer">
+
+            <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4"
+                 style="background: linear-gradient(135deg,#FFCDD2,#EF5350); color:#FFFFFF;">
+                <i class="fas fa-tint"></i>
             </div>
-            <p class="opacity-90 mb-4">Create and track blood requests from your hospital</p>
-            <a asp-controller="Requests" asp-action="Index"
-               class="inline-block bg-white text-purple-600 font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+
+            <h3 class="text-xl font-bold mb-2" style="color:#B71C1C;">Blood Requests</h3>
+            <p class="mb-6" style="color:#6B7280;">Track all blood requests</p>
+
+            <a asp-controller="Hospital" asp-action="GetRquestsAsync"
+               class="inline-block px-4 py-2 rounded-lg font-semibold border border-[#E53935]
+                      transition duration-200 hover:bg-[#E53935] hover:text-white"
+               style="color:#E53935;">
                 View Requests →
             </a>
         </div>
 
-        <!-- Profile Card -->
-        <div class="bg-gradient-to-r from-green-400 to-teal-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-2xl font-semibold">Profile</h3>
-                <i class="fas fa-hospital text-3xl opacity-80"></i>
-            </div>
-            <p class="opacity-90 mb-4">Manage hospital information and data</p>
-            <span class="text-white text-sm opacity-80">Coming soon</span>
-        </div>
+        <!-- Create Blood Request Card -->
+        <div class="p-8 rounded-2xl shadow-lg border border-[#B71C1C] hover:shadow-2xl hover:-translate-y-2
+                    transform transition duration-300 bg-white cursor-pointer">
 
-        <!-- Optional: Add another card, e.g., Donors or Requests metrics -->
-        <div class="bg-gradient-to-r from-red-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-2xl font-semibold">Requests Today</h3>
-                <i class="fas fa-tint text-3xl opacity-80"></i>
+            <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4"
+                 style="background: linear-gradient(135deg,#FFCDD2,#EF5350); color:#FFFFFF;">
+                <i class="fas fa-plus"></i>
             </div>
-            <p class="text-3xl font-bold mb-2">@Model.NewRequestsToday</p>
-            <p class="opacity-90 mb-4">Blood requests submitted today</p>
-            <a asp-controller="Requests" asp-action="Index"
-               class="inline-block bg-white text-red-500 font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-                View All Requests →
+
+            <h3 class="text-xl font-bold mb-2" style="color:#B71C1C;">Create Request</h3>
+            <p class="mb-6" style="color:#6B7280;">Create a new blood request</p>
+
+            <a asp-controller="Hospital" asp-action="CreateRequest"
+               class="inline-block px-4 py-2 rounded-lg font-semibold border border-[#E53935]
+                      transition duration-200 hover:bg-[#E53935] hover:text-white"
+               style="color:#E53935;">
+                + Create Request
             </a>
         </div>
 
     </div>
 </div>
-
-@section Scripts {
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-}

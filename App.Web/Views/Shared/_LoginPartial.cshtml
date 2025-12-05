@@ -6,7 +6,25 @@
 <div class="flex items-center space-x-3">
     @if (SignInManager.IsSignedIn(User))
     {
-        <span class="text-white font-semibold">👤 @User.Identity?.Name</span>
+        // تعريف الرابط قبل استخدامه في HTML
+        string dashboardUrl = "#"; // افتراضي
+        if (User.IsInRole("Admin"))
+        {
+            dashboardUrl = Url.Action("Index", "AdminDashboard");
+        }
+        else if (User.IsInRole("BloodBank"))
+        {
+            dashboardUrl = Url.Action("Index", "BloodBankDashboard");
+        }
+        else if (User.IsInRole("Hospital"))
+        {
+            dashboardUrl = Url.Action("Index", "HospitalDashboard");
+        }
+
+        <a href="@dashboardUrl" class="text-white font-semibold hover:underline">
+            👤 @User.Identity?.Name
+        </a>
+
         <form asp-area="" asp-controller="Auth" asp-action="Logout" method="post" class="inline">
             <button type="submit" class="bg-white text-red-600 px-3 py-1 rounded-md text-sm font-semibold hover:bg-red-50 transition-colors shadow-sm">
                 Logout
@@ -17,9 +35,6 @@
     {
         <a asp-area="" asp-controller="Auth" asp-action="Login" class="bg-white text-red-600 px-3 py-1 rounded-md text-sm font-semibold hover:bg-red-50 transition-colors shadow-sm">
             Login
-        </a>
-        <a asp-area="" asp-controller="Auth" asp-action="Register" class="text-white hover:text-red-100 px-3 py-1 rounded-md text-sm font-medium transition-colors">
-            Register
         </a>
     }
 </div>

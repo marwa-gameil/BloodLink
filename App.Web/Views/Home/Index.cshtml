@@ -4,65 +4,96 @@
 }
 
 <!-- Hero Section -->
-<div class="relative bg-cover bg-center" style="background-image: url('/images/hero-bg.jpg');">
-    <div class="absolute inset-0 bg-black/50"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center relative z-10">
-        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6">Connecting Lives Through Blood Donation</h1>
-        <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Your contribution can save a life. Join us in making a difference today.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Requests" class="bg-red-700 hover:bg-red-800 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition transform hover:-translate-y-1">
-                View Requests
-            </a>
-            <a href="/Requests/Create" class="bg-white text-red-700 border-2 border-red-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-50 shadow-lg transition transform hover:-translate-y-1">
-                Make a Request
-            </a>
+<div class="relative bg-cover bg-center bg-no-repeat" 
+     style="background-image: url('/images/bg.jpg');">
+
+    <!-- Overlay  -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
+        <div class="md:w-1/2 text-left">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6">
+               Connecting Lives<br>Through Smarter Blood Flow
+            </h1>
+
+            <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-lg">
+The bridge between hospitals and blood banks            </p>
         </div>
     </div>
 </div>
 
-<!-- Features Section -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
 
-    <!-- Card 1 -->
-    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
-        <img src="/images/find-donor.svg" class="w-16 h-16 mb-4 mx-auto" alt="Find Donors">
-        <h3 class="text-xl font-bold text-gray-900 mb-3">Find Donors</h3>
-        <p class="text-gray-700">Connect with registered blood donors in your area quickly and efficiently.</p>
-    </div>
 
-    <!-- Card 2 -->
-    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
-        <img src="/images/track-inventory.svg" class="w-16 h-16 mb-4 mx-auto" alt="Track Inventory">
-        <h3 class="text-xl font-bold text-gray-900 mb-3">Track Inventory</h3>
-        <p class="text-gray-700">Real-time blood stock monitoring across all blood banks and hospitals.</p>
-    </div>
+<!-- Blood Bank Search Section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Find Blood Banks in Your Governorate</h2>
+    <form asp-controller="BloodBank" asp-action="GetBloodBanks" method="get"
+      class="flex flex-col md:flex-row items-center justify-center gap-4">
 
-    <!-- Card 3 -->
-    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
-        <img src="/images/save-lives.svg" class="w-16 h-16 mb-4 mx-auto" alt="Save Lives">
-        <h3 class="text-xl font-bold text-gray-900 mb-3">Save Lives</h3>
-        <p class="text-gray-700">Every donation matters. Be part of a lifesaving network in your community.</p>
-    </div>
+    <label class="text-xl font-semibold w-full md:w-auto">
+        Select Governorate
+    </label>
+
+    <!-- Dropdown Governorates -->
+    <select name="govern"
+            class="border border-gray-300 rounded-lg p-3 w-full md:w-1/3 bg-white shadow-sm focus:ring-2 focus:ring-red-600 focus:outline-none">
+<option value="Cairo">Cairo</option>
+<option value="Giza">Giza</option>
+<option value="Alexandria">Alexandria</option>
+<option value="Dakahlia">Dakahlia</option>
+<option value="Sharqia">Sharqia</option>
+<option value="Gharbia">Gharbia</option>
+<option value="Monufia">Monufia</option>
+<option value="Fayoum">Fayoum</option>
+<option value="Beni Suef">Beni Suef</option>
+<option value="Minya">Minya</option>
+<option value="Assiut">Assiut</option>
+<option value="Sohag">Sohag</option>
+<option value="Qena">Qena</option>
+<option value="Luxor">Luxor</option>
+<option value="Aswan">Aswan</option>
+<option value="Red Sea">Red Sea</option>
+<option value="New Valley">New Valley</option>
+<option value="Matrouh">Matrouh</option>
+<option value="North Sinai">North Sinai</option>
+<option value="South Sinai">South Sinai</option>
+<option value="Ismailia">Ismailia</option>
+<option value="Suez">Suez</option>
+<option value="Port Said">Port Said</option>
+<option value="Damietta">Damietta</option>
+<option value="Kafr El Sheikh">Kafr El Sheikh</option>
+<option value="Luxor">Luxor</option>
+<option value="Aswan">Aswan</option>
+
+    </select>
+
+    <!-- Red Search Button Styled Like The Previous Screenshot -->
+    <button type="submit"
+            class="bg-red-700 hover:bg-red-800 text-white font-semibold rounded-lg px-6 py-3 shadow-md 
+                   flex items-center gap-2 transition-all duration-200 w-full md:w-auto">
+        <i class="fas fa-arrow-right"></i>
+        Search
+    </button>
+</form>
 
 </div>
 
-<!-- Why Donate Section -->
+
+<!-- Our Mission Section -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col md:flex-row items-center gap-8">
 
     <div class="md:w-1/2 flex justify-center">
-        <img src="/images/why-donate.jpg" alt="Why Donate" class="rounded-xl shadow-lg w-4/5 md:w-3/4 lg:w-2/3 max-h-80 object-contain">
+        <img src="/images/photo.jpg" alt="Our Mission" class="rounded-xl shadow-lg w-4/5 md:w-3/4 lg:w-2/3 max-h-80 object-contain">
     </div>
 
 
     <div class="md:w-1/2">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Donate Blood?</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Mission: Connecting Blood Banks and Hospitals</h2>
         <p class="text-gray-700 mb-4">
-            Blood donation is a simple yet powerful way to save lives. Your contribution can support hospitals, help patients in emergencies, and strengthen community health.
+            The primary goal of our platform is to create a seamless and efficient connection between blood banks and hospitals. We aim to optimize the blood supply chain, ensuring that the right blood type is available at the right place and time to save lives.
         </p>
         <p class="text-gray-700">
-            Join thousands of donors today and be part of a compassionate network making a real difference.
+            By centralizing inventory and request management, we help medical facilities respond to emergencies faster and manage their resources more effectively, ultimately strengthening the entire healthcare system.
         </p>
     </div>
 </div>
@@ -70,43 +101,39 @@
 
 </div>
 
-<!-- Latest Requests Section -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Latest Blood Requests</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Ali Ahmed</h3>
-            <p class="text-gray-700">Blood Type: O+</p>
-            <p class="text-gray-700">City: Cairo</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Mona Saleh</h3>
-            <p class="text-gray-700">Blood Type: A-</p>
-            <p class="text-gray-700">City: Alexandria</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Khaled Nabil</h3>
-            <p class="text-gray-700">Blood Type: B+</p>
-            <p class="text-gray-700">City: Giza</p>
-        </div>
-    </div>
-</div>
+
 
 <!-- Stats Section -->
-<div class="bg-red-700 text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div>
-            <div class="text-5xl font-bold mb-2">500+</div>
-            <div class="text-xl">Active Donors</div>
-        </div>
-        <div>
-            <div class="text-5xl font-bold mb-2">1000+</div>
-            <div class="text-xl">Lives Saved</div>
-        </div>
-        <div>
-            <div class="text-5xl font-bold mb-2">50+</div>
-            <div class="text-xl">Partner Hospitals</div>
-        </div>
-    </div>
-</div>
+<div id="stats" class="py-16 bg-white opacity-0 translate-y-6 transition-all duration-700">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
 
+    <!-- Active Blood Banks (Dark Red Glass) -->
+    <div class="glass-colored" 
+         style="background: rgba(120,0,0,0.45); 
+                border-color: rgba(200,50,50,0.45); 
+                box-shadow: 0 8px 30px rgba(120,0,0,0.55);">
+      <div class="text-5xl font-bold mb-2 glow-red" data-target="500">0+</div>
+      <div class="text-xl text-white">Active Blood Banks</div>
+    </div>
+
+    <!-- Lives Saved (Deep Blue Glass) -->
+    <div class="glass-colored" 
+         style="background: rgba(25,110,200,0.40); 
+                border-color: rgba(80,150,230,0.45); 
+                box-shadow: 0 8px 30px rgba(25,110,200,0.60);">
+      <div class="text-5xl font-bold mb-2 glow-blue" data-target="1000">0+</div>
+      <div class="text-xl text-white">Lives Saved</div>
+    </div>
+
+    <!-- Partner Hospitals (Dark Navy Glass) -->
+    <div class="glass-colored" 
+         style="background: rgba(5,20,40,0.45); 
+                border-color: rgba(40,70,110,0.45); 
+                box-shadow: 0 8px 30px rgba(5,20,40,0.60);">
+      <div class="text-5xl font-bold mb-2 glow-indigo" data-target="50">0+</div>
+      <div class="text-xl text-white">Partner Hospitals</div>
+    </div>
+
+  </div>
+</div>
+<style> .glass-colored { padding: 3rem; border-radius: 1.6rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 2px solid rgba(255,255,255,0.3); background-blend-mode: overlay; transition: 0.3s ease; } .glass-colored:hover { transform: translateY(-6px); } /* Text glow matching theme */ .glow-red { text-shadow: 0 0 10px rgba(255,80,80,0.8); } .glow-blue { text-shadow: 0 0 10px rgba(100,170,255,0.8); } .glow-indigo { text-shadow: 0 0 10px rgba(120,140,200,0.7); } </style> <script> function animateCounters() { const counters = document.querySelectorAll('[data-target]'); counters.forEach(counter => { let start = 0; const target = +counter.getAttribute("data-target"); const update = () => { if (start < target) { start += Math.ceil(target / 120); counter.innerText = start + "+"; requestAnimationFrame(update); } else { counter.innerText = target + "+"; } }; update(); }); } const statsSection = document.getElementById("stats"); let started = false; window.addEventListener("scroll", () => { const rect = statsSection.getBoundingClientRect().top; if (rect < window.innerHeight - 100 && !started) { statsSection.classList.remove("opacity-0", "translate-y-6"); animateCounters(); started = true; } }); </script>

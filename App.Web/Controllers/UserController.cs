@@ -1,4 +1,5 @@
-﻿using App.Web.Services;
+﻿using App.Application.DTOs;
+using App.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Web.Controllers
@@ -34,6 +35,29 @@ namespace App.Web.Controllers
             if (!success)
             {
                 return BadRequest("Failed to deactivate user.");
+            }
+            return RedirectToAction(nameof(GetAll));
+        }
+
+        [HttpGet]
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddUser(AddUserDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(dto);
+            }
+            var user = await _userService.AddUserAsync(dto);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Failed to add user.");
+                return View(dto);
             }
             return RedirectToAction(nameof(GetAll));
         }

@@ -1,0 +1,49 @@
+<svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <title>Minimalist Blood Supply Connection</title>
+    <defs>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.1"/>
+        </filter>
+    </defs>
+
+    <!-- Hospital Icon (Left) - Stylized Building -->
+    <g transform="translate(80, 50)" fill="#ca0c05ff" stroke="#b61414ff" stroke-width="2" filter="url(#shadow)">
+        <!-- Building Outline -->
+        <rect x="-30" y="0" width="60" height="80" rx="5" fill="#ffffff"/>
+        <!-- Cross -->
+        <rect x="-10" y="15" width="20" height="5" fill="#f63b3bff"/>
+        <rect x="-2.5" y="7.5" width="5" height="20" fill="#c21212ff"/>
+        <!-- Windows -->
+        <rect x="-20" y="40" width="10" height="10" fill="#e5e7eb"/>
+        <rect x="10" y="40" width="10" height="10" fill="#e5e7eb"/>
+        <text x="0" y="105" font-size="14" fill="#af0808ff" text-anchor="middle" direction="rtl" unicode-bidi="bidi-override" stroke="none"></text>
+    </g>
+
+    <!-- Blood Bank Icon (Right) - Stylized Blood Bag -->
+    <g transform="translate(320, 50)" fill="#ef4444" stroke="#ef4444" stroke-width="2" filter="url(#shadow)">
+        <!-- Blood Bag Shape -->
+        <path d="M-20 10 C -20 5, -15 0, 0 0 C 15 0, 20 5, 20 10 L 20 60 C 20 75, -20 75, -20 60 Z" fill="#ffffff"/>
+        <!-- Blood Fill -->
+        <path d="M-18 15 C -18 10, -13 5, 0 5 C 13 5, 18 10, 18 15 L 18 60 C 18 70, -18 70, -18 60 Z" fill="#ef4444"/>
+        <!-- Hanger Loop -->
+        <circle cx="0" cy="0" r="3" fill="#9ca3af" stroke="none"/>
+        <text x="0" y="105" font-size="14" fill="#ef4444" text-anchor="middle" direction="rtl" unicode-bidi="bidi-override" stroke="none"></text>
+    </g>
+
+    <!-- Connection Line (Digital Bridge) -->
+    <path d="M 110 80 C 150 40, 250 40, 290 80" 
+          fill="none" 
+          stroke="#10b981" 
+          stroke-width="4" 
+          stroke-linecap="round"
+          stroke-dasharray="15, 10"/>
+    
+    <!-- Flowing Data/Blood Indicator -->
+    <circle cx="200" cy="50" r="6" fill="#10b981">
+        <animateMotion
+            path="M 110 80 C 150 40, 250 40, 290 80"
+            dur="4s"
+            repeatCount="indefinite"
+            rotate="auto" />
+    </circle>
+</svg>

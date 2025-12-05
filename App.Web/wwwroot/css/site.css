@@ -1,4 +1,4 @@
-/* Custom styles for BloodLink application */
+﻿/* Custom styles for BloodLink application */
 /* Tailwind CSS handles most styling, keeping only custom overrides here */
 
 /* Smooth scrolling for better UX */
@@ -56,5 +56,45 @@ html {
 .fade-in {
   animation: fadeIn 0.5s ease-out;
 }
+
+.logo-white {
+    filter: brightness(0) invert(1);
+}
+
+/* Scrollbar Style */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #5a0000; /* أغمق درجة للهيدر */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #8b0000; /* نفس لون الهيدر */
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #a30000; /* درجة عند الHover */
+    }
+::-webkit-scrollbar {
+    width: 5px;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+
 
 /* Optional: Add any custom Tailwind utilities or components here */

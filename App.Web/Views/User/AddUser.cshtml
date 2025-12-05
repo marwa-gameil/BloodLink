@@ -1,0 +1,98 @@
+﻿@using App.Application.DTOs
+@model AddUserDTO
+
+@{
+    ViewData["Title"] = "Add User";
+    Layout = "_Layout";
+}
+
+<div class="max-w-xl mx-auto mt-12 bg-white p-6 shadow-md rounded">
+    <h2 class="text-2xl font-bold mb-6 text-red-600 text-center">
+        Create Admin User
+    </h2>
+
+    <!-- Errors from API / ModelState -->
+    <div asp-validation-summary="ModelOnly"
+         class="text-red-600 mb-4 text-sm"></div>
+
+    <form asp-controller="User"
+          asp-action="AddUser"
+          method="post"
+          novalidate>
+
+        <!-- Name -->
+        <div class="mb-3">
+            <input asp-for="Name"
+                   class="w-full border p-2 rounded"
+                   placeholder="Full Name" />
+            <span asp-validation-for="Name"
+                  class="text-red-600 text-xs"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <input asp-for="Email"
+                   type="email"
+                   class="w-full border p-2 rounded"
+                   placeholder="Email Address" />
+            <span asp-validation-for="Email"
+                  class="text-red-600 text-xs"></span>
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+            <input asp-for="Address"
+                   class="w-full border p-2 rounded"
+                   placeholder="Address" />
+            <span asp-validation-for="Address"
+                  class="text-red-600 text-xs"></span>
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+            <input asp-for="PhoneNumber"
+                   class="w-full border p-2 rounded"
+                   placeholder="Phone Number" />
+            <span asp-validation-for="PhoneNumber"
+                  class="text-red-600 text-xs"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <input asp-for="Password"
+                   type="password"
+                   class="w-full border p-2 rounded"
+                   placeholder="Password" />
+            <span asp-validation-for="Password"
+                  class="text-red-600 text-xs"></span>
+        </div>
+
+        <!-- Role -->
+        <div class="mb-3">
+            <label class="block text-sm font-semibold mb-1">Role</label>
+
+            <input asp-for="Role"
+                   class="w-full border p-2 rounded bg-gray-100"
+                   value="Admin"
+                   readonly />
+        </div>
+
+        <!-- Active -->
+        <div class="mb-5">
+            <label class="flex items-center gap-2 text-sm">
+                <input asp-for="IsActive" />
+                Active User
+            </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+                class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded w-full">
+            Create User
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

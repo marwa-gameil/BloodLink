@@ -1,0 +1,77 @@
+﻿@model App.Application.DTOs.CreateHospitalDto
+
+@{
+    ViewData["Title"] = "AddHospital";
+    Layout = "_Layout";
+}
+
+<div class="max-w-xl mx-auto mt-10 bg-white p-6 shadow rounded">
+    <h2 class="text-2xl font-bold mb-4 text-red-600">Create Hospital</h2>
+
+    @* رسالة نجاح *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="bg-green-100 text-green-700 p-3 mb-4 rounded">
+            @TempData["Success"]
+        </div>
+    }
+
+    <form asp-controller="Hospital" asp-action="AddHospital" method="post">
+
+        <div class="mb-3">
+            <input asp-for="Name" class="w-full border p-2 rounded" placeholder="Hospital Name" />
+            <span asp-validation-for="Name" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="mb-3">
+            <input asp-for="Address" class="w-full border p-2 rounded" placeholder="Address" />
+            <span asp-validation-for="Address" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="mb-3">
+            <input asp-for="Governorate" class="w-full border p-2 rounded" placeholder="Governorate" />
+            <span asp-validation-for="Governorate" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="mb-3">
+            <input asp-for="PhoneNumber" class="w-full border p-2 rounded" placeholder="Phone Number" />
+            <span asp-validation-for="PhoneNumber" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="mb-3">
+            <input asp-for="Email" type="email"
+                   class="w-full border p-2 rounded" placeholder="Email" />
+            <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="mb-3">
+            <input asp-for="LicenseNumber" class="w-full border p-2 rounded"
+                   placeholder="License Number" />
+            <span asp-validation-for="LicenseNumber" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-3">
+            <div>
+                <input asp-for="Latitude" class="w-full border p-2 rounded" placeholder="Latitude" />
+            </div>
+            <div>
+                <input asp-for="Longitude" class="w-full border p-2 rounded" placeholder="Longitude" />
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <input asp-for="Password" type="password"
+                   class="w-full border p-2 rounded" placeholder="Password" />
+            <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
+        </div>
+
+        <button type="submit"
+                class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded w-full">
+            Create Hospital
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

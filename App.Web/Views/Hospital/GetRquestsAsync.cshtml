@@ -11,12 +11,14 @@
         {
             <div class="bg-white shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-shadow relative">
 
-                <h2 class="text-xl font-semibold mb-2">@request.HospitalName</h2>
+                 <h2 class="text-xl font-semibold mb-2">@request.BloodBankName</h2>
                 <p class="text-gray-600 mb-1"><strong>Blood Type:</strong> @request.BloodType</p>
                 <p class="text-gray-600 mb-1"><strong>Quantity:</strong> @request.Quantity Units</p>
-                <p class="text-gray-600 mb-1"><strong>Priority:</strong> @request.Priority</p>
-                <p class="text-gray-600 mb-4"><strong>Notes:</strong> @request.Notes</p>
-                <p class="text-gray-600 mb-4"><strong>Date:</strong> @request.RequestDate.ToShortDateString()</p>
+                <p class="text-gray-600 mb-1"><strong>Status:</strong> @request.Status</p>
+                <p class="text-gray-600 mb-1"><strong>PatientName:</strong> @request.PatientName</p>
+                <p class="text-gray-600 mb-1"><strong>Patient PhoneNumber:</strong> @request.PatientPhoneNumber</p>
+                <p class="text-gray-600 mb-1"><strong>NationalId:</strong> @request.NationalId</p>
+                <p class="text-gray-600 mb-4"><strong>Date:</strong> @request.CreatedAt.ToShortDateString()</p>
 
                 <div class="flex gap-3">
                     <a asp-action="Edit" asp-route-id="@request.Id"

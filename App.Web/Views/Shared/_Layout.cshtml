@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BloodLink</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/App.Web.styles.css" asp-append-version="true" />
 </head>
 <body class="flex flex-col min-h-screen bg-white">
     <!-- HEADER -->
-    <header class="bg-red-600 shadow-lg sticky top-0 z-50">
+<header class="bg-[#8b0000] shadow-lg sticky top-0 z-50">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <a class="flex items-center text-2xl font-bold text-white hover:text-red-100 transition-colors"
                    asp-area="" asp-controller="Home" asp-action="Index">
 
-                    <img src="~/images/logoBlack.svg" alt="BloodLink Logo" class="h-12 w-auto mr-2" />
+<img src="~/images/logoBlack.svg" alt="BloodLink Logo" class="h-12 w-auto mr-2 logo-white" />
 
 
                     BloodLink
@@ -26,7 +27,6 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="text-white hover:text-red-100 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Home</a>
-                    <a asp-area="" asp-controller="Requests" asp-action="Index" class="text-white hover:text-red-100 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Requests</a>
                     <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-white hover:text-red-100 px-3 py-2 rounded-md text-sm font-semibold transition-colors">About</a>
                     <partial name="_LoginPartial" />
                 </div>
@@ -57,34 +57,58 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-red-600 text-white mt-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4">BloodLink</h3>
-                    <p class="text-red-100">Connecting lives through blood donation. Together, we save lives.</p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index" class="text-red-100 hover:text-white transition-colors">Home</a></li>
-                        <li><a asp-area="" asp-controller="Requests" asp-action="Index" class="text-red-100 hover:text-white transition-colors">Requests</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-red-100 hover:text-white transition-colors">About</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Contact</h3>
-                    <p class="text-red-100">Email: info@bloodlink.com</p>
-                    <p class="text-red-100">Phone: +20 123 456 7890</p>
-                </div>
+<footer class="bg-[#8b0000] text-white mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-bold mb-4">BloodLink</h3>
+                <p class="text-red-100">The bridge between hospitals and blood banks.</p>
             </div>
-            <div class="border-t border-red-500 mt-8 pt-6">
-                <p class="text-center text-red-100">
-                    &copy; 2025 BloodLink. All rights reserved.
-                </p>
+
+      <div>
+    <h3 class="text-lg font-bold mb-4 text-white">Quick Links</h3>
+    <ul class="space-y-2">
+        <li class="text-white">Home</li>
+        <li class="text-white">Requests</li>
+        <li class="text-white">About</li>
+    </ul>
+</div>
+
+
+
+
+            <div>
+                <h3 class="text-lg font-bold mb-4">Contact</h3>
+                <p class="text-red-100">Email: info@bloodlink.com</p>
+                <p class="text-red-100">Phone: +20 123 456 7890</p>
             </div>
         </div>
-    </footer>
+
+        <div class="border-t border-white mt-10 pt-6">
+
+            <div class="text-center text-white space-y-1">
+                <p>&copy; 2025 BloodLink</p>
+                <p>All rights reserved.</p>
+            </div>
+
+          <div class="flex justify-center gap-4 mt-4">
+    <a href="#" class="text-xl">
+        <i class="fab fa-facebook" style="color: white;"></i>
+    </a>
+    <a href="#" class="text-xl">
+        <i class="fab fa-twitter" style="color: white;"></i>
+    </a>
+    <a href="#" class="text-xl">
+        <i class="fab fa-whatsapp" style="color: white;"></i>
+    </a>
+</div>
+
+
+        </div>
+    </div>
+</footer>
+
 
     <!-- SCRIPTS -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

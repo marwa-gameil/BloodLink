@@ -184,7 +184,12 @@
                     View Blood Banks
                 </button>
             </form>
+            <a asp-controller="BloodBank" asp-action="AddBloodBank"
+               class="block mt-4 font-semibold" style="color:#E53935;">
+                + Create Blood Bank
+            </a>
         </div>
+
 
         <!-- Hospitals Card -->
         <div class="card p-8">
@@ -193,11 +198,18 @@
             </div>
             <h3 class="card-title">Hospitals</h3>
             <p class="subtitle">Manage hospitals in the system</p>
-            <a asp-controller="Hospital" asp-action="Index" class="btn-link">
+
+            <a asp-controller="Hospital" asp-action="Index" class="btn-primary">
                 <i class="fas fa-arrow-right"></i>
                 View Hospitals
             </a>
+
+            <a asp-controller="Hospital" asp-action="AddHospital"
+               class="block mt-4 font-semibold" style="color:#2E7D32;">
+                + Create Hospital
+            </a>
         </div>
+
 
         <!-- Users Card -->
         <div class="card p-8">
@@ -206,10 +218,19 @@
             </div>
             <h3 class="card-title">Users</h3>
             <p class="subtitle">System users and roles</p>
-            <span class="badge-coming">
-                <i class="fas fa-clock"></i> Coming Soon
-            </span>
+
+            <a asp-controller="User" asp-action="AddUser"
+               class="btn-primary">
+                <i class="fas fa-arrow-right"></i>
+                View All Users
+            </a>
+
+            <a asp-controller="User" asp-action="AddUser"
+               class="block mt-4 font-semibold" style="color:#0F1724;">
+                + Create User
+            </a>
         </div>
+
     </div>
 </div>
 

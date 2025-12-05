@@ -11,12 +11,19 @@ namespace App.Web.Controllers
         {
             _hospitalServices = hospitalServices;
         }
-       
+
         public async Task<IActionResult> GetRquestsAsync()
         {
             var requests = await _hospitalServices.GetHospitalRequestsAsync();
             return View(requests);
         }
+
+        [HttpGet]
+        public IActionResult CreateRequest()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateRequestAsync(CreateRequestDto createRequestDto)
         {
@@ -59,6 +66,27 @@ namespace App.Web.Controllers
                 return BadRequest("Failed to cancel request.");
             }
             return RedirectToAction(nameof(GetRquestsAsync));
+        }
+        [HttpGet] 
+        public IActionResult AddHospital()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddHospital(CreateHospitalDto createHospitalDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(createHospitalDto);
+            }
+            var success = await _hospitalServices.AddHospitalAsync(createHospitalDto);
+            if (!success)
+            {
+                ModelState.AddModelError("", "Failed to add hospital. Please try again.");
+                return View(createHospitalDto);
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

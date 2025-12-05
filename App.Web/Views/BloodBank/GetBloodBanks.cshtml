@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<App.Application.DTOs.BloodBankDto>
+@inject Microsoft.AspNetCore.Identity.UserManager<App.Domain.Models.User> UserManager
 @{
     ViewData["Title"] = "Blood Banks List";
+    var currentUser = User.Identity;
 }
 
 <div class="max-w-6xl mx-auto mt-10 p-4">
@@ -13,24 +15,25 @@
 
                 <h2 class="text-xl font-semibold mb-2">@bank.Name</h2>
                 <p class="text-gray-600 mb-1"><strong>Email:</strong> @bank.Email</p>
-                <p class="text-gray-600 mb-1"><strong>Phone:</strong> @bank.PhoneNumber</p>
+                <p class="text-gray-600 mb-1"><strong>Phone:</strong> @bank.ContactNumber</p>
                 <p class="text-gray-600 mb-1"><strong>Address:</strong> @bank.Address, @bank.Governorate</p>
-                <p class="text-gray-600 mb-1"><strong>License:</strong> @bank.LicenseNumber</p>
-                <p class="text-gray-600 mb-4"><strong>Location:</strong> (@bank.Latitude, @bank.Longitude)</p>
 
-                <div class="flex gap-3">
-                    <a asp-action="Edit" asp-route-id="@bank.Id"
-                       class="flex-1 text-center py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-                        <i class="fas fa-edit mr-2"></i>Edit
-                    </a>
-                    <form asp-action="Delete" asp-route-id="@bank.Id" method="post" onsubmit="return confirm('Are you sure?');" class="flex-1">
-                        <button type="submit"
-                                class="w-full py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center">
-                            <i class="fas fa-trash mr-2"></i>Delete
-                        </button>
-                    </form>
-                </div>
-
+                @* Edit/Delete buttons only for Admin or the bank owner *@
+                @if (User.IsInRole("Admin") || User.FindFirst("BankId")?.Value == bank.Id.ToString())
+                {
+                    <div class="flex gap-3 mt-4">
+                        <a asp-action="Edit" asp-route-id="@bank.Id"
+                           class="flex-1 text-center py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                            <i class="fas fa-edit mr-2"></i>Edit
+                        </a>
+                        <form asp-action="Delete" asp-route-id="@bank.Id" method="post" onsubmit="return confirm('Are you sure?');" class="flex-1">
+                            <button type="submit"
+                                    class="w-full py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center">
+                                <i class="fas fa-trash mr-2"></i>Delete
+                            </button>
+                        </form>
+                    </div>
+                }
             </div>
         }
     </div>

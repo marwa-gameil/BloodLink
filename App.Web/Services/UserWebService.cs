@@ -27,6 +27,15 @@ namespace App.Web.Services
             var response = await _httpClient.DeleteAsync($"api/user/{id}");
             return response.IsSuccessStatusCode;
         }
+        public async Task<UserDTO?> AddUserAsync(AddUserDTO dto)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/User/Add", dto);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<UserDTO>();
+            }
+            return null;
+        }
 
     }
 }
