@@ -85,7 +85,7 @@ namespace App.Web
                 var roleManager = services.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
 
                 // Seeding roles
-                string[] roles = new[] { "Admin", "Hospital", "BloodBank" };
+                string[] roles = new[] { "admin", "hospital", "bloodBank" };
                 foreach (var role in roles)
                 {
                     if (await roleManager.FindByNameAsync(role) == null)

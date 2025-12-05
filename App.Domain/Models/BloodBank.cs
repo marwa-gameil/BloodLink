@@ -9,7 +9,7 @@ namespace App.Domain.Models
 {
     public class BloodBank
     {
-        public Guid UserId { get; set; } //fk /pk to user
+        public Guid UserId { get; set; } 
         public User User { get; set; }
         public string? BloodBankName { get; set; }
         public float Latitude { get; set; } //coordX 
